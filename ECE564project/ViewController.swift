@@ -8,6 +8,7 @@
 
 import UIKit
 import PencilKit
+import PhotosUI
 
 class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver {
 
@@ -39,6 +40,15 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
     }
 
     @IBAction func saveImageToAlbum(_ sender: Any) {
+        UIGraphicsBeginImageContextWithOptions(canvasView.bounds.size, false, UIScreen.main.scale)
+        canvasView.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if image != nil {
+            PHPhotoLibrary.shared().performChanges(
+                {PHAssetChangeRequest.creationRequestForAsset(from: image!)},
+                completionHandler: {success, error in })
+        }
     }
     
     @IBAction func changePencilFinger(_ sender: Any){
@@ -46,7 +56,7 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         pencilButton.title = canvasView.allowsFingerDrawing ? "Finger" : "Pencil"
     }
     
-    // - MARK: make rotate view work
+    // - MARK: make view rotation work
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let canvasScale = canvasView.bounds.width / canvasWidth
