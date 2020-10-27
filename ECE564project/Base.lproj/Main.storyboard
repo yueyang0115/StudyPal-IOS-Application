@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="04P-FJ-KQy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N8n-d7-kTb">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -25,16 +25,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="kbq-US-2m5">
-                        <barButtonItem key="leftBarButtonItem" systemItem="camera" id="KYK-CL-m0i">
-                            <connections>
-                                <action selector="saveImageToAlbum:" destination="BYZ-38-t0r" id="vJC-7i-5g1"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Pencil" id="CBt-4N-5ap">
-                            <connections>
-                                <action selector="changePencilFinger:" destination="BYZ-38-t0r" id="qLT-Pc-xRo"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem systemItem="camera" id="KYK-CL-m0i">
+                                <connections>
+                                    <action selector="saveImageToAlbum:" destination="BYZ-38-t0r" id="vJC-7i-5g1"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Pencil" id="CBt-4N-5ap">
+                                <connections>
+                                    <action selector="changePencilFinger:" destination="BYZ-38-t0r" id="qLT-Pc-xRo"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="XCF-Xu-fis"/>
                     </navigationItem>
                     <connections>
                         <outlet property="cameraButton" destination="KYK-CL-m0i" id="Zvo-pI-LCH"/>
@@ -44,7 +47,55 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1042.0289855072465" y="115.84821428571428"/>
+            <point key="canvasLocation" x="3708.6956521739135" y="115.84821428571428"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FJn-5N-79a">
+            <objects>
+                <viewController id="wG8-wu-Tq3" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5hg-dD-pKf">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="sMp-t1-hd8"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="I71-RS-5SW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Lau-gL-RVR">
+                            <connections>
+                                <segue destination="5yW-wh-74a" kind="show" id="GTS-3n-WHY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OT1-92-Eaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="237.68115942028987" y="115.84821428571428"/>
+        </scene>
+        <!--New Note-->
+        <scene sceneID="7t6-4d-jDT">
+            <objects>
+                <viewController id="RCA-VV-hwH" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ipZ-Fh-DOr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nEB-Ld-urG">
+                                <rect key="frame" x="158" y="277" width="98" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="draw a picture"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="RLt-iR-Lve"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Note" id="cDM-rl-AsE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PZg-2b-hcf"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="N5m-1v-jm7"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Gb-p5-Nzg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1926.0869565217392" y="115.84821428571428"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7jc-JG-8bZ">
@@ -62,7 +113,44 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEa-aR-WEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="115.84821428571428"/>
+            <point key="canvasLocation" x="2728.985507246377" y="115.84821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ehN-g4-sCd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N8n-d7-kTb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GaY-ev-ApM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wG8-wu-Tq3" kind="relationship" relationship="rootViewController" id="n2C-CR-6xS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jlL-7g-g5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-672.46376811594212" y="115.84821428571428"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="B4C-aa-OfG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5yW-wh-74a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="zNx-Mn-VZb"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="mFZ-Ze-Pe7">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="RCA-VV-hwH" kind="relationship" relationship="rootViewController" id="IaG-VN-x3Z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VSH-ag-PCc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1015.9420289855074" y="115.84821428571428"/>
         </scene>
     </scenes>
 </document>

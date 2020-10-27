@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D19A9A925487D1E00B09BEB /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19A9A825487D1E00B09BEB /* NewNoteViewController.swift */; };
 		1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEADF253E886A005A385D /* AppDelegate.swift */; };
 		1DCEEAE2253E886A005A385D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE1253E886A005A385D /* SceneDelegate.swift */; };
 		1DCEEAE4253E886A005A385D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE3253E886A005A385D /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D19A9A825487D1E00B09BEB /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
 		1DCEEADC253E886A005A385D /* ECE564project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCEEADF253E886A005A385D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DCEEAE1253E886A005A385D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1D19A9A725487CF900B09BEB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1D19A9A825487D1E00B09BEB /* NewNoteViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		1DCEEAD3253E886A005A385D = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +68,7 @@
 		1DCEEADE253E886A005A385D /* ECE564project */ = {
 			isa = PBXGroup;
 			children = (
+				1D19A9A725487CF900B09BEB /* ViewController */,
 				1DCEEADF253E886A005A385D /* AppDelegate.swift */,
 				1DCEEAE1253E886A005A385D /* SceneDelegate.swift */,
 				1DCEEAE3253E886A005A385D /* ViewController.swift */,
@@ -141,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D19A9A925487D1E00B09BEB /* NewNoteViewController.swift in Sources */,
 				1DCEEAE4253E886A005A385D /* ViewController.swift in Sources */,
 				1DCEEAEA253E886A005A385D /* ECE564project.xcdatamodeld in Sources */,
 				1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */,
