@@ -1,5 +1,5 @@
 //
-//  NewNoteViewController.swift
+//  NoteListViewController.swift
 //  ECE564project
 //
 //  Created by 杨越 on 10/27/20.
@@ -8,10 +8,8 @@
 
 import UIKit
 
-class NewNoteViewController: UIViewController {
+class NoteListViewController: UIViewController {
 
-    @IBOutlet weak var painterButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,9 +17,6 @@ class NewNoteViewController: UIViewController {
     }
     
 
-//    @IBAction func drawImage(_ sender: Any) {
-//        performSegue(withIdentifier: "createNewDrawing", sender: self)
-//    }
     /*
     // MARK: - Navigation
 
@@ -31,7 +26,7 @@ class NewNoteViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    @IBAction func returnFromNewDrawing(segue: UIStoryboardSegue){
-    
+    @IBAction func returnFromNewNote(segue: UIStoryboardSegue){
+        
     }
 }

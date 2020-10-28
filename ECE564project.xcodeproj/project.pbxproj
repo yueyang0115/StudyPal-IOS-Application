@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		1D19A9A925487D1E00B09BEB /* NewNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19A9A825487D1E00B09BEB /* NewNoteViewController.swift */; };
+		1D19A9AB2548825600B09BEB /* NoteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19A9AA2548825600B09BEB /* NoteListViewController.swift */; };
+		1D19A9AF2548988E00B09BEB /* NewDrawingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D19A9AE2548988E00B09BEB /* NewDrawingViewController.swift */; };
 		1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEADF253E886A005A385D /* AppDelegate.swift */; };
 		1DCEEAE2253E886A005A385D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE1253E886A005A385D /* SceneDelegate.swift */; };
-		1DCEEAE4253E886A005A385D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE3253E886A005A385D /* ViewController.swift */; };
 		1DCEEAE7253E886A005A385D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE5253E886A005A385D /* Main.storyboard */; };
 		1DCEEAEA253E886A005A385D /* ECE564project.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE8253E886A005A385D /* ECE564project.xcdatamodeld */; };
 		1DCEEAEC253E886D005A385D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DCEEAEB253E886D005A385D /* Assets.xcassets */; };
@@ -19,10 +20,11 @@
 
 /* Begin PBXFileReference section */
 		1D19A9A825487D1E00B09BEB /* NewNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewNoteViewController.swift; sourceTree = "<group>"; };
+		1D19A9AA2548825600B09BEB /* NoteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteListViewController.swift; sourceTree = "<group>"; };
+		1D19A9AE2548988E00B09BEB /* NewDrawingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDrawingViewController.swift; sourceTree = "<group>"; };
 		1DCEEADC253E886A005A385D /* ECE564project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCEEADF253E886A005A385D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DCEEAE1253E886A005A385D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1DCEEAE3253E886A005A385D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1DCEEAE6253E886A005A385D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1DCEEAE9253E886A005A385D /* ECE564project.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ECE564project.xcdatamodel; sourceTree = "<group>"; };
 		1DCEEAEB253E886D005A385D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -44,7 +46,9 @@
 		1D19A9A725487CF900B09BEB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				1D19A9AA2548825600B09BEB /* NoteListViewController.swift */,
 				1D19A9A825487D1E00B09BEB /* NewNoteViewController.swift */,
+				1D19A9AE2548988E00B09BEB /* NewDrawingViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -71,7 +75,6 @@
 				1D19A9A725487CF900B09BEB /* ViewController */,
 				1DCEEADF253E886A005A385D /* AppDelegate.swift */,
 				1DCEEAE1253E886A005A385D /* SceneDelegate.swift */,
-				1DCEEAE3253E886A005A385D /* ViewController.swift */,
 				1DCEEAE5253E886A005A385D /* Main.storyboard */,
 				1DCEEAEB253E886D005A385D /* Assets.xcassets */,
 				1DCEEAED253E886D005A385D /* LaunchScreen.storyboard */,
@@ -153,9 +156,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D19A9A925487D1E00B09BEB /* NewNoteViewController.swift in Sources */,
-				1DCEEAE4253E886A005A385D /* ViewController.swift in Sources */,
+				1D19A9AB2548825600B09BEB /* NoteListViewController.swift in Sources */,
 				1DCEEAEA253E886A005A385D /* ECE564project.xcdatamodeld in Sources */,
 				1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */,
+				1D19A9AF2548988E00B09BEB /* NewDrawingViewController.swift in Sources */,
 				1DCEEAE2253E886A005A385D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

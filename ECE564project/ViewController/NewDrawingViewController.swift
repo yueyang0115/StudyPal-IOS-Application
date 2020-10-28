@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  NewDrawingViewController.swift
 //  ECE564project
 //
-//  Created by 杨越 on 10/19/20.
+//  Created by 杨越 on 10/27/20.
 //  Copyright © 2020 杨越. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import PencilKit
 import PhotosUI
 
-class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver {
+class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver {
 
     @IBOutlet weak var canvasView: PKCanvasView!
     @IBOutlet weak var pencilButton: UIBarButtonItem!
@@ -21,10 +21,15 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //setCanvas()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         setCanvas()
     }
     
     func setCanvas(){
+        print("go into setCanvas")
         canvasView.delegate = self
         canvasView.drawing = drawing
         canvasView.alwaysBounceVertical = true
@@ -50,7 +55,7 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         }
     }
     
-    @IBAction func changePencilFinger(_ sender: Any){
+    @IBAction func changePencilFinger(_ sender: Any) {
         canvasView.allowsFingerDrawing.toggle()
         pencilButton.title = canvasView.allowsFingerDrawing ? "Finger" : "Pencil"
     }
@@ -65,15 +70,15 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         updateContentSize()
         canvasView.contentOffset = CGPoint(x: 0, y: -canvasView.adjustedContentInset.top)
     }
-    
+
     override var prefersHomeIndicatorAutoHidden: Bool{
         return true
     }
-    
+
     func canvasViewDrawingDidChange(_ canvasView: PKCanvasView) {
         updateContentSize()
     }
-    
+
     func updateContentSize(){
         let drawing = canvasView.drawing
         let contentHeight: CGFloat
@@ -85,5 +90,14 @@ class ViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserv
         }
         canvasView.contentSize = CGSize(width: canvasWidth * canvasView.zoomScale, height: contentHeight)
     }
-}
+    /*
+    // MARK: - Navigation
 
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
