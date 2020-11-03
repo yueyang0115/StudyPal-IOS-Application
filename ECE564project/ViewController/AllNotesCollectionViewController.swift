@@ -63,27 +63,20 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     }
     */
 
-    // MARK: UICollectionViewDataSource
-
+    // MARK: Collection View Data Source
+    
+    /// Data source method: Number of sections.
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         //return 0
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        //return 0
         return dataModelController.drawings.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-//
-//        // Configure the cell
-//
-//        return cell
         
         // Get a cell view with the correct identifier.
         guard let cell = collectionView.dequeueReusableCell(
