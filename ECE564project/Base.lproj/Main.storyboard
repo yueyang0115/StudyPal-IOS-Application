@@ -11,13 +11,13 @@
         <!--New Drawing View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="NewDrawingViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewDrawingViewController" id="BYZ-38-t0r" customClass="NewDrawingViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-7H-jQ1" customClass="PKCanvasView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -97,7 +97,7 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="noteImage" destination="aWx-yk-Lyu" id="0fM-bB-afZ"/>
-                                    <segue destination="04P-FJ-KQy" kind="show" identifier="showNoteSegue" id="aLp-Kh-BKU"/>
+                                    <segue destination="04P-FJ-KQy" kind="presentation" identifier="showNoteSegue" id="33i-qq-gzO"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -141,7 +141,11 @@
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" title="Notes" id="4R5-8I-pod">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mXA-Op-Ikk"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mXA-Op-Ikk">
+                            <connections>
+                                <action selector="newDrawing:" destination="PKF-jP-TSd" id="akM-tC-3Qc"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
             </objects>
@@ -154,7 +158,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ANn-hX-chs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OcB-hh-5Vs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

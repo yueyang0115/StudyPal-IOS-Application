@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import PencilKit
 
 private let reuseIdentifier = "Cell"
 
-class AllNotesCollectionViewController: UICollectionViewController {
-
+class AllNotesCollectionViewController: UICollectionViewController, DataModelControllerObserver {
+    
+    /// Data model for the drawings displayed by this view controller.
+    var dataModelController = DataModelController()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +26,31 @@ class AllNotesCollectionViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
+        
+        // Inform the data model of the current thumbnail traits.
+        dataModelController.thumbnailTraitCollection = traitCollection
+        
+        // Observe changes to the data model.
+        dataModelController.observers.append(self)
+    }
+    
+    /// Inform the data model of the current thumbnail traits.
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        dataModelController.thumbnailTraitCollection = traitCollection
+    }
+    
+    // MARK: Data Model Observer
+    
+    func dataModelChanged() {
+        collectionView.reloadData()
+    }
+    
+    // MARK: Actions
+    
+    /// Action method: Create a new drawing.
+    @IBAction func newDrawing(_ sender: Any) {
+        dataModelController.newDrawing()
     }
 
     /*
@@ -38,21 +67,56 @@ class AllNotesCollectionViewController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        //return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        //return 0
+        return dataModelController.drawings.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+//
+//        // Configure the cell
+//
+//        return cell
+        
+        // Get a cell view with the correct identifier.
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: "NoteCell",
+            for: indexPath) as? NoteCell
+            else {
+                fatalError("Unexpected cell type.")
+        }
+        
+        // Set the thumbnail image, if available.
+        if let index = indexPath.last, index < dataModelController.thumbnails.count {
+            cell.noteImage.image = dataModelController.thumbnails[index]
+        }
+        
         return cell
+    }
+    
+    // MARK: Collection View Delegate
+    
+    /// Delegate method: Display the drawing for a cell that was tapped.
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        // Create the drawing.
+        guard let drawingViewController = storyboard?.instantiateViewController(withIdentifier: "NewDrawingViewController") as? NewDrawingViewController,
+            let navigationController = navigationController else {
+                return
+        }
+        
+        // Transition to the drawing view controller.
+        drawingViewController.dataModelController = dataModelController
+        drawingViewController.drawingIndex = indexPath.last!
+        navigationController.pushViewController(drawingViewController, animated: true)
+        performSegue(withIdentifier: "showNoteSegue", sender: self)
     }
 
     // MARK: UICollectionViewDelegate

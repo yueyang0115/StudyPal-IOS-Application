@@ -34,7 +34,7 @@ struct DataModel: Codable {
     static let defaultDrawingNames: [String] = ["Notes"]
     
     /// The width used for drawing canvases.
-    static let canvasWidth: CGFloat = 768
+    static let canvasWidth: CGFloat = 500
     
     /// The drawings that make up the current data model.
     var drawings: [PKDrawing] = []
@@ -211,4 +211,3 @@ class DataModelController {
         updateDrawing(newDrawing, at: dataModel.drawings.count - 1)
     }
 }
-

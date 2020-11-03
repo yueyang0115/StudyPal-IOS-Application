@@ -17,7 +17,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     
     let canvasWidth: CGFloat = 768
     let canvasHeight:CGFloat = 500
-    var drawing = PKDrawing()
+    
     var dataModelController: DataModelController!
     var drawingIndex: Int = 0
     var hasModifiedDrawing = false
@@ -33,9 +33,8 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     }
     
     func setCanvas(){
-        print("go into setCanvas")
         canvasView.delegate = self
-        canvasView.drawing = drawing
+        canvasView.drawing = dataModelController.drawings[drawingIndex]
         canvasView.alwaysBounceVertical = true
         canvasView.allowsFingerDrawing = true
         
