@@ -37,11 +37,14 @@
                                 </connections>
                             </barButtonItem>
                         </leftBarButtonItems>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="XCF-Xu-fis">
-                            <connections>
-                                <segue destination="Ora-T0-1HU" kind="unwind" identifier="donePainting" unwindAction="returnFromNewDrawingWithSegue:" id="Z1N-yb-SoN"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="done" id="XCF-Xu-fis">
+                                <connections>
+                                    <segue destination="Ora-T0-1HU" kind="unwind" identifier="donePainting" unwindAction="returnFromNewDrawingWithSegue:" id="Z1N-yb-SoN"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="organize" id="g0D-S3-xS4"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="canvasView" destination="DYZ-7H-jQ1" id="zbB-SH-dqB"/>
