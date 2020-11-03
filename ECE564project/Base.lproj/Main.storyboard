@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N8n-d7-kTb">
-    <device id="ipad10_5" orientation="portrait" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7g4-sn-YGb">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -12,11 +13,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="NewDrawingViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-7H-jQ1" customClass="PKCanvasView">
-                                <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -40,7 +41,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="done" id="XCF-Xu-fis">
                                 <connections>
-                                    <segue destination="Ora-T0-1HU" kind="unwind" identifier="donePainting" unwindAction="returnFromNewDrawingWithSegue:" id="Z1N-yb-SoN"/>
+                                    <segue destination="Ora-T0-1HU" kind="unwind" unwindAction="returnFromNoteWithSegue:" id="fEI-ih-tzx"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="organize" id="g0D-S3-xS4"/>
@@ -54,70 +55,97 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="Ora-T0-1HU" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4618.840579710145" y="115.84821428571428"/>
+            <point key="canvasLocation" x="2628" y="-609"/>
         </scene>
-        <!--Note List View Controller-->
-        <scene sceneID="FJn-5N-79a">
+        <!--Notes-->
+        <scene sceneID="5QC-ag-Gzb">
             <objects>
-                <viewController id="wG8-wu-Tq3" customClass="NoteListViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5hg-dD-pKf">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4cF-xK-Bdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <collectionViewController id="PKF-jP-TSd" customClass="AllNotesCollectionViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6T6-bX-dC4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="sMp-t1-hd8"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="I71-RS-5SW">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Lau-gL-RVR">
-                            <connections>
-                                <segue destination="4N9-V2-nZp" kind="presentation" identifier="createNewNote" modalPresentationStyle="fullScreen" id="rt6-jv-lf1"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OT1-92-Eaa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="157" y="116"/>
-        </scene>
-        <!--New Note-->
-        <scene sceneID="7t6-4d-jDT">
-            <objects>
-                <viewController id="RCA-VV-hwH" customClass="NewNoteViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ipZ-Fh-DOr">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="glH-qR-nal">
-                                <rect key="frame" x="130" y="317" width="100" height="30"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="20" id="ril-Go-Ijt">
+                            <size key="itemSize" width="148" height="190"/>
+                            <size key="headerReferenceSize" width="60" height="60"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
+                        </collectionViewFlowLayout>
+                        <cells>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCell" id="xcS-Hz-n8g" customClass="NoteCell" customModule="ECE564project" customModuleProvider="target">
+                                <rect key="frame" x="10" y="70" width="148" height="190"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="draw an image"/>
+                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="G19-Wd-qOx">
+                                    <rect key="frame" x="0.0" y="0.0" width="148" height="190"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aWx-yk-Lyu">
+                                            <rect key="frame" x="10" y="10" width="128" height="170"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="128" id="QHk-jD-fFK"/>
+                                                <constraint firstAttribute="height" constant="170" id="dZa-Pb-A2a"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aWx-yk-Lyu" firstAttribute="top" secondItem="G19-Wd-qOx" secondAttribute="top" constant="10" id="Kgc-3i-CMF"/>
+                                        <constraint firstAttribute="trailing" secondItem="aWx-yk-Lyu" secondAttribute="trailing" constant="10" id="cU0-ad-R6a"/>
+                                        <constraint firstAttribute="bottom" secondItem="aWx-yk-Lyu" secondAttribute="bottom" constant="10" id="frh-Wg-d1q"/>
+                                        <constraint firstItem="aWx-yk-Lyu" firstAttribute="leading" secondItem="G19-Wd-qOx" secondAttribute="leading" constant="10" id="lAc-LC-s1s"/>
+                                    </constraints>
+                                </collectionViewCellContentView>
                                 <connections>
-                                    <segue destination="04P-FJ-KQy" kind="presentation" identifier="createNewDrawing" modalPresentationStyle="fullScreen" id="RHY-p5-8Zi"/>
+                                    <outlet property="noteImage" destination="aWx-yk-Lyu" id="0fM-bB-afZ"/>
+                                    <segue destination="04P-FJ-KQy" kind="show" identifier="showNoteSegue" id="aLp-Kh-BKU"/>
                                 </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="RLt-iR-Lve"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="New Note" id="cDM-rl-AsE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PZg-2b-hcf">
+                            </collectionViewCell>
+                        </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="headerView" id="jil-8K-SZj" customClass="HeaderView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KfY-PU-Pcx">
+                                    <rect key="frame" x="5" y="5" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="CIp-zR-AYx"/>
+                                        <constraint firstAttribute="width" constant="50" id="VV6-UC-ZOw"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catogory Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IID-Q8-xQk">
+                                    <rect key="frame" x="65" y="5" width="305" height="50"/>
+                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="16"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="IID-Q8-xQk" secondAttribute="bottom" constant="5" id="C9D-lr-msb"/>
+                                <constraint firstItem="KfY-PU-Pcx" firstAttribute="top" secondItem="jil-8K-SZj" secondAttribute="top" constant="5" id="KJn-29-l7Y"/>
+                                <constraint firstItem="IID-Q8-xQk" firstAttribute="centerY" secondItem="jil-8K-SZj" secondAttribute="centerY" id="QRt-ah-hpp"/>
+                                <constraint firstItem="KfY-PU-Pcx" firstAttribute="centerY" secondItem="jil-8K-SZj" secondAttribute="centerY" id="XQA-V5-3OP"/>
+                                <constraint firstItem="IID-Q8-xQk" firstAttribute="top" secondItem="jil-8K-SZj" secondAttribute="top" constant="5" id="dYT-7E-AEu"/>
+                                <constraint firstAttribute="bottom" secondItem="KfY-PU-Pcx" secondAttribute="bottom" constant="5" id="hds-Eg-reX"/>
+                                <constraint firstItem="KfY-PU-Pcx" firstAttribute="leading" secondItem="jil-8K-SZj" secondAttribute="leading" constant="5" id="iNv-ig-QjX"/>
+                                <constraint firstAttribute="trailing" secondItem="IID-Q8-xQk" secondAttribute="trailing" constant="5" id="ktV-8b-NDd"/>
+                                <constraint firstItem="IID-Q8-xQk" firstAttribute="leading" secondItem="KfY-PU-Pcx" secondAttribute="trailing" constant="10" id="rXY-1i-N6s"/>
+                            </constraints>
                             <connections>
-                                <segue destination="qZT-eu-9Zu" kind="unwind" identifier="cancelNewNote" unwindAction="returnFromNewNoteWithSegue:" id="D9j-qK-6uz"/>
+                                <outlet property="catogoryImage" destination="KfY-PU-Pcx" id="HFE-lD-3Ap"/>
+                                <outlet property="catogoryLabel" destination="IID-Q8-xQk" id="MxU-G5-CXA"/>
                             </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="N5m-1v-jm7">
-                            <connections>
-                                <segue destination="qZT-eu-9Zu" kind="unwind" identifier="saveNewNote" unwindAction="returnFromNewNoteWithSegue:" id="hg7-qo-z3h"/>
-                            </connections>
-                        </barButtonItem>
+                        </collectionReusableView>
+                        <connections>
+                            <outlet property="dataSource" destination="PKF-jP-TSd" id="m7n-h1-H4i"/>
+                            <outlet property="delegate" destination="PKF-jP-TSd" id="zbG-FY-pT1"/>
+                        </connections>
+                    </collectionView>
+                    <navigationItem key="navigationItem" title="Notes" id="4R5-8I-pod">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mXA-Op-Ikk"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="painterButton" destination="glH-qR-nal" id="nR3-yf-uNL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4Gb-p5-Nzg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="qZT-eu-9Zu" userLabel="Exit" sceneMemberID="exit"/>
+                </collectionViewController>
             </objects>
-            <point key="canvasLocation" x="2232" y="116"/>
+            <point key="canvasLocation" x="871" y="-609"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7jc-JG-8bZ">
@@ -126,7 +154,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ANn-hX-chs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OcB-hh-5Vs">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -136,43 +164,25 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEa-aR-WEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3420" y="116"/>
+            <point key="canvasLocation" x="1756" y="-609"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="ehN-g4-sCd">
+        <scene sceneID="ejh-X5-uBr">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N8n-d7-kTb" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krW-id-9OZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7g4-sn-YGb" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GaY-ev-ApM">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lUs-1L-rSd">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="wG8-wu-Tq3" kind="relationship" relationship="rootViewController" id="n2C-CR-6xS"/>
+                        <segue destination="PKF-jP-TSd" kind="relationship" relationship="rootViewController" id="0FA-EP-Yxj"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jlL-7g-g5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-672.46376811594212" y="115.84821428571428"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="VZ3-bH-dQz">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4N9-V2-nZp" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="b5f-SH-erZ">
-                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="RCA-VV-hwH" kind="relationship" relationship="rootViewController" id="4a8-MJ-PXT"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2xf-bj-vWE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1216" y="116"/>
+            <point key="canvasLocation" x="-6.4748201438848927" y="-609.17266187050359"/>
         </scene>
     </scenes>
 </document>
