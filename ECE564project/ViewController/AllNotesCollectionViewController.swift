@@ -102,6 +102,7 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
         navigationController.pushViewController(drawingViewController, animated: true)
         */
         drawingIndex = indexPath.last!
+        print(drawingIndex)
         //performSegue(withIdentifier: "showNoteSegue", sender: self)
     }
 

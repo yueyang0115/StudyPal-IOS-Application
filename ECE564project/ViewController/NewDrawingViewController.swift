@@ -17,17 +17,17 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     
     var toolPicker: PKToolPicker!
     
-    static let canvasWidth: CGFloat = 768
-    static let canvasHeight:CGFloat = 500
+    let canvasWidth: CGFloat = 768
+    let canvasHeight:CGFloat = 500
     
     var dataModelController: DataModelController!
     var drawingIndex: Int = 0
     var hasModifiedDrawing = false
     
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        //setCanvas()
-//    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //setCanvas()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,7 +71,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     // - MARK: make view rotation work
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let canvasScale = canvasView.bounds.width / DataModel.canvasWidth
+        let canvasScale = canvasView.bounds.width / self.canvasWidth
         canvasView.minimumZoomScale = canvasScale
         canvasView.maximumZoomScale = canvasScale
         canvasView.zoomScale = canvasScale
@@ -87,22 +87,32 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         hasModifiedDrawing = true
         updateContentSize()
     }
-
-    func updateContentSize(){
-        func updateContentSizeForDrawing() {
-            // Update the content size to match the drawing.
-            let drawing = canvasView.drawing
-            let contentHeight: CGFloat
-            
-            // Adjust the content size to always be bigger than the drawing height.
-            if !drawing.bounds.isNull {
-                contentHeight = max(canvasView.bounds.height, (drawing.bounds.maxY + NewDrawingViewController.canvasHeight) * canvasView.zoomScale)
-            } else {
-                contentHeight = canvasView.bounds.height
-            }
-            canvasView.contentSize = CGSize(width: DataModel.canvasWidth * canvasView.zoomScale, height: contentHeight)
+    func updateContentSize() {
+        // Update the content size to match the drawing.
+        let drawing = canvasView.drawing
+        let contentHeight: CGFloat
+        
+        // Adjust the content size to always be bigger than the drawing height.
+        if !drawing.bounds.isNull {
+            contentHeight = max(canvasView.bounds.height, (drawing.bounds.maxY + self.canvasHeight) * canvasView.zoomScale)
+        } else {
+            contentHeight = canvasView.bounds.height
         }
+        canvasView.contentSize = CGSize(width: DataModel.canvasWidth * canvasView.zoomScale, height: contentHeight)
     }
+
+    
+//    func updateContentSize(){
+//        let drawing = canvasView.drawing
+//        let contentHeight: CGFloat
+//        if !drawing.bounds.isNull{
+//            contentHeight = max(canvasView.bounds.height, (drawing.bounds.maxY + self.canvasHeight) * canvasView.zoomScale)
+//            }
+//        else{
+//            contentHeight = canvasView.bounds.height
+//        }
+//        canvasView.contentSize = CGSize(width: self.canvasWidth * canvasView.zoomScale, height: contentHeight)
+//    }
     
     // When the view is removed, save the modified drawing
     override func viewWillDisappear(_ animated: Bool) {
@@ -158,9 +168,9 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         
         // Convert to PDF coordinates, with (0, 0) at the bottom left hand corner,
         // making the height a bit bigger than the current drawing.
-        let pdfWidth = DataModel.canvasWidth
+        let pdfWidth = self.canvasWidth
         let pdfHeight = drawing.bounds.maxY + 100
-        let canvasContentSize = canvasView.contentSize.height - NewDrawingViewController.canvasHeight
+        let canvasContentSize = canvasView.contentSize.height - self.canvasHeight
         
         let xOffsetInPDF = pdfWidth - (pdfWidth * visibleRect.minX / canvasView.contentSize.width)
         let yOffsetInPDF = pdfHeight - (pdfHeight * visibleRect.maxY / canvasContentSize)
@@ -186,7 +196,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
             var yOrigin: CGFloat = 0
             let imageHeight: CGFloat = 1024
             while yOrigin < bounds.maxY {
-                let imgBounds = CGRect(x: 0, y: yOrigin, width: DataModel.canvasWidth, height: min(imageHeight, bounds.maxY - yOrigin))
+                let imgBounds = CGRect(x: 0, y: yOrigin, width: self.canvasWidth, height: min(imageHeight, bounds.maxY - yOrigin))
                 let img = drawing.image(from: imgBounds, scale: 2)
                 img.draw(in: imgBounds)
                 yOrigin += imageHeight
