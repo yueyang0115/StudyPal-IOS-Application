@@ -13,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="NewDrawingViewController" id="BYZ-38-t0r" customClass="NewDrawingViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DYZ-7H-jQ1" customClass="PKCanvasView">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -60,7 +60,6 @@
         <!--Notes-->
         <scene sceneID="5QC-ag-Gzb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="4cF-xK-Bdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <collectionViewController id="PKF-jP-TSd" customClass="AllNotesCollectionViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="6T6-bX-dC4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -97,7 +96,7 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="noteImage" destination="aWx-yk-Lyu" id="0fM-bB-afZ"/>
-                                    <segue destination="04P-FJ-KQy" kind="presentation" identifier="showNoteSegue" id="33i-qq-gzO"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showNoteSegue" id="VQw-po-4ES"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -114,6 +113,7 @@
                         </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4cF-xK-Bdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="871" y="-609"/>
         </scene>
@@ -124,7 +124,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ANn-hX-chs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OcB-hh-5Vs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -139,7 +139,6 @@
         <!--Main Navi Controller-->
         <scene sceneID="ejh-X5-uBr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="krW-id-9OZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7g4-sn-YGb" customClass="MainNaviController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lUs-1L-rSd">
@@ -151,8 +150,12 @@
                         <segue destination="PKF-jP-TSd" kind="relationship" relationship="rootViewController" id="0FA-EP-Yxj"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="krW-id-9OZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6.4748201438848927" y="-609.17266187050359"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="rSP-3N-1Xs"/>
+    </inferredMetricsTieBreakers>
 </document>

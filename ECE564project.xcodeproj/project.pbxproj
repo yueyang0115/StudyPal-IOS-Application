@@ -76,6 +76,13 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
+		1DBBA9142553BA97000D808D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
 		1DCEEAD3253E886A005A385D = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +102,7 @@
 		1DCEEADE253E886A005A385D /* ECE564project */ = {
 			isa = PBXGroup;
 			children = (
+				1DBBA9142553BA97000D808D /* New Group */,
 				1D62418825513A3A00D3CD9D /* Database */,
 				1D62418325512D6900D3CD9D /* CollectionRelated */,
 				1D19A9A725487CF900B09BEB /* ViewController */,

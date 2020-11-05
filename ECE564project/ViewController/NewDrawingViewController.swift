@@ -15,38 +15,39 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     @IBOutlet weak var canvasView: PKCanvasView!
     @IBOutlet weak var pencilButton: UIBarButtonItem!
     
-    let canvasWidth: CGFloat = 768
-    let canvasHeight:CGFloat = 500
+    var toolPicker: PKToolPicker!
+    
+    static let canvasWidth: CGFloat = 768
+    static let canvasHeight:CGFloat = 500
     
     var dataModelController: DataModelController!
     var drawingIndex: Int = 0
     var hasModifiedDrawing = false
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //setCanvas()
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        //setCanvas()
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setCanvas()
         parent?.view.window?.windowScene?.screenshotService?.delegate = self
     }
     
     func setCanvas(){
         canvasView.delegate = self
-        print(dataModelController.drawings)
-        canvasView.drawing = dataModelController.drawings[0]
+        canvasView.drawing = dataModelController.drawings[drawingIndex]
         canvasView.alwaysBounceVertical = true
         canvasView.allowsFingerDrawing = true
         
-        if let window = parent?.view.window,
-        let toolPicker = PKToolPicker.shared(for: window){
+        let window = parent?.view.window
+        toolPicker = PKToolPicker.shared(for: window!)
             toolPicker.setVisible(true, forFirstResponder: canvasView)
             toolPicker.addObserver(canvasView)
             toolPicker.addObserver(self)
             updateLayout(for: toolPicker)
             canvasView.becomeFirstResponder()
-        }
         
     }
 
@@ -70,7 +71,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     // - MARK: make view rotation work
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let canvasScale = canvasView.bounds.width / canvasWidth
+        let canvasScale = canvasView.bounds.width / DataModel.canvasWidth
         canvasView.minimumZoomScale = canvasScale
         canvasView.maximumZoomScale = canvasScale
         canvasView.zoomScale = canvasScale
@@ -88,15 +89,19 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     }
 
     func updateContentSize(){
-        let drawing = canvasView.drawing
-        let contentHeight: CGFloat
-        if !drawing.bounds.isNull{
-            contentHeight = max(canvasView.bounds.height, (drawing.bounds.maxY + self.canvasHeight) * canvasView.zoomScale)
+        func updateContentSizeForDrawing() {
+            // Update the content size to match the drawing.
+            let drawing = canvasView.drawing
+            let contentHeight: CGFloat
+            
+            // Adjust the content size to always be bigger than the drawing height.
+            if !drawing.bounds.isNull {
+                contentHeight = max(canvasView.bounds.height, (drawing.bounds.maxY + NewDrawingViewController.canvasHeight) * canvasView.zoomScale)
+            } else {
+                contentHeight = canvasView.bounds.height
+            }
+            canvasView.contentSize = CGSize(width: DataModel.canvasWidth * canvasView.zoomScale, height: contentHeight)
         }
-        else{
-            contentHeight = canvasView.bounds.height
-        }
-        canvasView.contentSize = CGSize(width: canvasWidth * canvasView.zoomScale, height: contentHeight)
     }
     
     // When the view is removed, save the modified drawing
@@ -124,9 +129,16 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     // adjust canvesView size when tool picker change
     func updateLayout(for toolPicker: PKToolPicker) {
         let obscuredFrame = toolPicker.frameObscured(in: view)
+        
+        // If the tool picker is floating over the canvas, it also contains
+        // undo and redo buttons.
         if obscuredFrame.isNull {
             canvasView.contentInset = .zero
         }
+        
+        // Otherwise, the bottom of the canvas should be inset to the top of the
+        // tool picker, and the tool picker no longer displays its own undo and
+        // redo buttons.
         else {
             canvasView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.maxY - obscuredFrame.minY, right: 0)
         }
@@ -146,9 +158,9 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         
         // Convert to PDF coordinates, with (0, 0) at the bottom left hand corner,
         // making the height a bit bigger than the current drawing.
-        let pdfWidth = self.canvasWidth
+        let pdfWidth = DataModel.canvasWidth
         let pdfHeight = drawing.bounds.maxY + 100
-        let canvasContentSize = canvasView.contentSize.height - self.canvasHeight
+        let canvasContentSize = canvasView.contentSize.height - NewDrawingViewController.canvasHeight
         
         let xOffsetInPDF = pdfWidth - (pdfWidth * visibleRect.minX / canvasView.contentSize.width)
         let yOffsetInPDF = pdfHeight - (pdfHeight * visibleRect.maxY / canvasContentSize)
@@ -174,7 +186,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
             var yOrigin: CGFloat = 0
             let imageHeight: CGFloat = 1024
             while yOrigin < bounds.maxY {
-                let imgBounds = CGRect(x: 0, y: yOrigin, width: self.canvasWidth, height: min(imageHeight, bounds.maxY - yOrigin))
+                let imgBounds = CGRect(x: 0, y: yOrigin, width: DataModel.canvasWidth, height: min(imageHeight, bounds.maxY - yOrigin))
                 let img = drawing.image(from: imgBounds, scale: 2)
                 img.draw(in: imgBounds)
                 yOrigin += imageHeight

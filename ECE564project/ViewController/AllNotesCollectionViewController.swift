@@ -9,12 +9,11 @@
 import UIKit
 import PencilKit
 
-private let reuseIdentifier = "Cell"
 
 class AllNotesCollectionViewController: UICollectionViewController, DataModelControllerObserver {
     
-    /// Data model for the drawings displayed by this view controller.
     var dataModelController = DataModelController()
+    var drawingIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +22,7 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        /*self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)*/
 
         // Do any additional setup after loading the view.
         
@@ -53,29 +52,20 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
         dataModelController.newDrawing()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: Collection View Data Source
     
     /// Data source method: Number of sections.
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        //return 0
         return 1
     }
-
+    
+    /// Data source method: Number of items in each section.
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataModelController.drawings.count
     }
-
+    
+    /// Data source method: The view for each cell.
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Get a cell view with the correct identifier.
@@ -98,7 +88,8 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     
     /// Delegate method: Display the drawing for a cell that was tapped.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        print("istapped")
+        /*
         // Create the drawing.
         guard let drawingViewController = storyboard?.instantiateViewController(withIdentifier: "NewDrawingViewController") as? NewDrawingViewController,
             let navigationController = navigationController else {
@@ -109,7 +100,9 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
         drawingViewController.dataModelController = dataModelController
         drawingViewController.drawingIndex = indexPath.last!
         navigationController.pushViewController(drawingViewController, animated: true)
-        performSegue(withIdentifier: "showNoteSegue", sender: self)
+        */
+        drawingIndex = indexPath.last!
+        //performSegue(withIdentifier: "showNoteSegue", sender: self)
     }
 
     // MARK: UICollectionViewDelegate
@@ -142,6 +135,21 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     
     }
     */
+    
+    
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using [segue destinationViewController].
+        // Pass the selected object to the new view controller.
+        if(segue.identifier == "showNoteSegue"){
+            let dst = segue.destination as! NewDrawingViewController
+            dst.dataModelController = self.dataModelController
+            dst.drawingIndex = self.drawingIndex
+        }
+    }
+    
     
     @IBAction func returnFromNote(segue: UIStoryboardSegue){
         
