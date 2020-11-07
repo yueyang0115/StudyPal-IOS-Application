@@ -89,18 +89,6 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     /// Delegate method: Display the drawing for a cell that was tapped.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("istapped")
-        /*
-        // Create the drawing.
-        guard let drawingViewController = storyboard?.instantiateViewController(withIdentifier: "NewDrawingViewController") as? NewDrawingViewController,
-            let navigationController = navigationController else {
-                return
-        }
-        
-        // Transition to the drawing view controller.
-        drawingViewController.dataModelController = dataModelController
-        drawingViewController.drawingIndex = indexPath.last!
-        navigationController.pushViewController(drawingViewController, animated: true)
-        */
         drawingIndex = indexPath.last!
         print(drawingIndex)
         //performSegue(withIdentifier: "showNoteSegue", sender: self)
@@ -142,8 +130,6 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
         if(segue.identifier == "showNoteSegue"){
             let dst = segue.destination as! NewDrawingViewController
             dst.dataModelController = self.dataModelController
