@@ -88,10 +88,8 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     
     /// Delegate method: Display the drawing for a cell that was tapped.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("istapped")
         drawingIndex = indexPath.last!
-        print(drawingIndex)
-        //performSegue(withIdentifier: "showNoteSegue", sender: self)
+        performSegue(withIdentifier: "showNoteSegue", sender: self)
     }
 
     // MARK: UICollectionViewDelegate

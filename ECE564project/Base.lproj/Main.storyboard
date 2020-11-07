@@ -32,7 +32,7 @@
                                     <action selector="saveImageToAlbum:" destination="BYZ-38-t0r" id="p4Z-qs-lfK"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Pencil" id="CBt-4N-5ap">
+                            <barButtonItem title="ToFinger" id="CBt-4N-5ap">
                                 <connections>
                                     <action selector="changePencilFinger:" destination="BYZ-38-t0r" id="e3b-IN-KvK"/>
                                 </connections>
@@ -93,7 +93,6 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="noteImage" destination="aWx-yk-Lyu" id="0fM-bB-afZ"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showNoteSegue" id="VQw-po-4ES"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -109,6 +108,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showNoteSegue" id="Rkx-x0-gsA"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cF-xK-Bdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -131,7 +133,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEa-aR-WEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1756" y="-609"/>
+            <point key="canvasLocation" x="1641" y="-636"/>
         </scene>
         <!--Main Navi Controller-->
         <scene sceneID="ejh-X5-uBr">
@@ -153,6 +155,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="VQw-po-4ES"/>
+        <segue reference="rSP-3N-1Xs"/>
     </inferredMetricsTieBreakers>
 </document>
