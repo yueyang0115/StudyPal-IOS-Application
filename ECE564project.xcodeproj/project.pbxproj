@@ -13,6 +13,7 @@
 		1D62418725512F5600D3CD9D /* NoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D62418625512F5600D3CD9D /* NoteCell.swift */; };
 		1D62418A25513A7200D3CD9D /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D62418925513A7200D3CD9D /* DataModel.swift */; };
 		1D62418C2551511600D3CD9D /* MainNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D62418B2551511600D3CD9D /* MainNaviController.swift */; };
+		1D6AF76925566EE100E89523 /* DrawNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D6AF76825566EE100E89523 /* DrawNaviController.swift */; };
 		1DBBA9162553CBA7000D808D /* DataModelCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBBA9152553CBA6000D808D /* DataModelCotroller.swift */; };
 		1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEADF253E886A005A385D /* AppDelegate.swift */; };
 		1DCEEAE2253E886A005A385D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE1253E886A005A385D /* SceneDelegate.swift */; };
@@ -29,6 +30,7 @@
 		1D62418625512F5600D3CD9D /* NoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteCell.swift; sourceTree = "<group>"; };
 		1D62418925513A7200D3CD9D /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		1D62418B2551511600D3CD9D /* MainNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNaviController.swift; sourceTree = "<group>"; };
+		1D6AF76825566EE100E89523 /* DrawNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawNaviController.swift; sourceTree = "<group>"; };
 		1DBBA9152553CBA6000D808D /* DataModelCotroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelCotroller.swift; sourceTree = "<group>"; };
 		1DCEEADC253E886A005A385D /* ECE564project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCEEADF253E886A005A385D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,7 @@
 				1D19A9AE2548988E00B09BEB /* NewDrawingViewController.swift */,
 				1D62418125512CB700D3CD9D /* AllNotesCollectionViewController.swift */,
 				1D62418B2551511600D3CD9D /* MainNaviController.swift */,
+				1D6AF76825566EE100E89523 /* DrawNaviController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				1D62418725512F5600D3CD9D /* NoteCell.swift in Sources */,
 				1D62418A25513A7200D3CD9D /* DataModel.swift in Sources */,
 				1DCEEAE2253E886A005A385D /* SceneDelegate.swift in Sources */,
+				1D6AF76925566EE100E89523 /* DrawNaviController.swift in Sources */,
 				1D62418525512E2A00D3CD9D /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

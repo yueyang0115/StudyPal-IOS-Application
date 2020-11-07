@@ -109,17 +109,17 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showNoteSegue" id="Rkx-x0-gsA"/>
+                        <segue destination="04P-FJ-KQy" kind="presentation" identifier="showNoteSegue" modalPresentationStyle="fullScreen" id="Pxv-A2-4HB"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cF-xK-Bdh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="871" y="-609"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Draw Navi Controller-->
         <scene sceneID="7jc-JG-8bZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="04P-FJ-KQy" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="04P-FJ-KQy" customClass="DrawNaviController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ANn-hX-chs"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OcB-hh-5Vs">
@@ -133,7 +133,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SEa-aR-WEa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1641" y="-636"/>
+            <point key="canvasLocation" x="1735" y="-609"/>
         </scene>
         <!--Main Navi Controller-->
         <scene sceneID="ejh-X5-uBr">
@@ -154,7 +154,4 @@
             <point key="canvasLocation" x="-6.4748201438848927" y="-609.17266187050359"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="rSP-3N-1Xs"/>
-    </inferredMetricsTieBreakers>
 </document>

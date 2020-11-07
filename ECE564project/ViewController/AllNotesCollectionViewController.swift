@@ -129,7 +129,8 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "showNoteSegue"){
-            let dst = segue.destination as! NewDrawingViewController
+            let navController = segue.destination as! DrawNaviController
+            let dst = navController.topViewController as! NewDrawingViewController
             dst.dataModelController = self.dataModelController
             dst.drawingIndex = self.drawingIndex
         }
