@@ -24,7 +24,5 @@ class DrawNaviController: UINavigationController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
     
-    @IBAction func returnFromBackView(segue: UIStoryboardSegue){
-    }
 }
 
