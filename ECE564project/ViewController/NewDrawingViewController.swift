@@ -39,7 +39,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         canvasView.delegate = self
         canvasView.drawing = dataModelController.drawings[drawingIndex]
         canvasView.alwaysBounceVertical = true
-        canvasView.allowsFingerDrawing = true
+        canvasView.allowsFingerDrawing = false
         
         let window = parent?.view.window
         toolPicker = PKToolPicker.shared(for: window!)
@@ -57,15 +57,28 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         if image != nil {
-            PHPhotoLibrary.shared().performChanges(
-                {PHAssetChangeRequest.creationRequestForAsset(from: image!)},
-                completionHandler: {success, error in })
+//            PHPhotoLibrary.shared().performChanges(
+//                {PHAssetChangeRequest.creationRequestForAsset(from: image!)},
+//                completionHandler: {success, error in })
+            let activityController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
+//            activityController.completionWithItemsHandler = { (nil, completed, _, error) in
+//                if completed{
+//                    print("completed")
+//                }
+//                else{
+//                    print("cancled")
+//                }
+//            }
+            present(activityController, animated: true)
+//            {
+//                print("presented")
+//            }
         }
     }
     
     @IBAction func changePencilFinger(_ sender: Any) {
         canvasView.allowsFingerDrawing.toggle()
-        pencilButton.title = canvasView.allowsFingerDrawing ? "Finger" : "Pencil"
+        pencilButton.title = canvasView.allowsFingerDrawing ? "toFinger" : "toPencil"
     }
     
     // - MARK: make view rotation work

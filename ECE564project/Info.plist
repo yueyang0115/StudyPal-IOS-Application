@@ -59,6 +59,10 @@
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>To store a drawing as an image in your photo library</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To copy, save image</string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
