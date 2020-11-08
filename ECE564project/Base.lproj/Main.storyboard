@@ -182,14 +182,50 @@
             </objects>
             <point key="canvasLocation" x="-783" y="-609"/>
         </scene>
-        <!--View Controller-->
+        <!--Audio View Controller-->
         <scene sceneID="aP3-Ug-hmA">
             <objects>
-                <viewController id="zhH-H7-smh" sceneMemberID="viewController">
+                <viewController id="zhH-H7-smh" customClass="AudioViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ag4-En-Rqj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6cg-RM-jbY">
+                                <rect key="frame" x="0.0" y="217" width="375" height="450"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="450" id="kMe-sQ-yFH"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recordingCell" id="Zid-WP-PsX">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zid-WP-PsX" id="fXs-cR-xtt">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zhH-H7-smh" id="6Xt-Xy-Yba"/>
+                                    <outlet property="delegate" destination="zhH-H7-smh" id="wkb-D6-9oa"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjh-VJ-Cbo">
+                                <rect key="frame" x="95" y="120" width="171" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="start recording"/>
+                                <connections>
+                                    <action selector="record:" destination="zhH-H7-smh" eventType="touchUpInside" id="xHg-cV-XvM"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6cg-RM-jbY" firstAttribute="leading" secondItem="Xkw-Q2-5JN" secondAttribute="leading" id="0e7-lD-nJ8"/>
+                            <constraint firstItem="6cg-RM-jbY" firstAttribute="trailing" secondItem="Xkw-Q2-5JN" secondAttribute="trailing" id="Dyf-TU-Dg0"/>
+                            <constraint firstItem="6cg-RM-jbY" firstAttribute="bottom" secondItem="Xkw-Q2-5JN" secondAttribute="bottom" id="un5-Lr-ccL"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Xkw-Q2-5JN"/>
                     </view>
                     <navigationItem key="navigationItem" id="l1y-iI-DrA">
@@ -199,11 +235,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="recordingTableView" destination="6cg-RM-jbY" id="Ghm-ag-PHw"/>
+                        <outlet property="startButton" destination="rjh-VJ-Cbo" id="uSk-Cr-5tO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjy-oa-tQZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="OHK-Py-luo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="932" y="148.87556221889056"/>
+            <point key="canvasLocation" x="840.79999999999995" y="148.87556221889056"/>
         </scene>
         <!--Main Navi Controller-->
         <scene sceneID="ejh-X5-uBr">
