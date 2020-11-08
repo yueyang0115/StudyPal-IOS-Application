@@ -10,7 +10,7 @@ import UIKit
 import PencilKit
 import PhotosUI
 
-class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver, UIScreenshotServiceDelegate {
+class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPickerObserver, UIScreenshotServiceDelegate, UIPopoverPresentationControllerDelegate {
 
     @IBOutlet weak var canvasView: PKCanvasView!
     @IBOutlet weak var pencilButton: UIBarButtonItem!
@@ -231,5 +231,17 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         // Pass the selected object to the new view controller.
     }
     */
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "popoverSegue" {
+            let popoverVc = segue.destination
+            popoverVc.modalPresentationStyle = .popover
+            popoverVc.popoverPresentationController?.delegate = self;
+            popoverVc.preferredContentSize = CGSize(width: 250, height: 250)
+        }
+    }
 
 }

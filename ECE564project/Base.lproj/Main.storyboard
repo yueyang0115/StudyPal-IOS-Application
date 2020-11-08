@@ -46,7 +46,7 @@
                             </barButtonItem>
                             <barButtonItem systemItem="compose" id="g0D-S3-xS4">
                                 <connections>
-                                    <segue destination="gRO-aP-4RD" kind="popoverPresentation" popoverAnchorBarButtonItem="g0D-S3-xS4" id="U2v-xk-RQE">
+                                    <segue destination="zhH-H7-smh" kind="popoverPresentation" identifier="popoverSegue" popoverAnchorBarButtonItem="g0D-S3-xS4" id="Czs-Vq-Crc">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>
                                 </connections>
@@ -190,21 +190,21 @@
             <objects>
                 <viewController id="zhH-H7-smh" customClass="AudioViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ag4-En-Rqj">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="6cg-RM-jbY">
-                                <rect key="frame" x="0.0" y="130" width="350" height="270"/>
+                                <rect key="frame" x="0.0" y="70" width="250" height="180"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="270" id="kMe-sQ-yFH"/>
+                                    <constraint firstAttribute="height" constant="180" id="kMe-sQ-yFH"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recordingCell" id="Zid-WP-PsX">
-                                        <rect key="frame" x="0.0" y="28" width="350" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="250" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zid-WP-PsX" id="fXs-cR-xtt">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -215,7 +215,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjh-VJ-Cbo">
-                                <rect key="frame" x="100" y="70" width="150" height="30"/>
+                                <rect key="frame" x="74" y="25" width="102" height="30"/>
                                 <state key="normal" title="start recording"/>
                                 <connections>
                                     <action selector="record:" destination="zhH-H7-smh" eventType="touchUpInside" id="xHg-cV-XvM"/>
@@ -225,10 +225,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="6cg-RM-jbY" firstAttribute="leading" secondItem="Xkw-Q2-5JN" secondAttribute="leading" id="0e7-lD-nJ8"/>
-                            <constraint firstItem="Xkw-Q2-5JN" firstAttribute="trailing" secondItem="rjh-VJ-Cbo" secondAttribute="trailing" constant="100" id="DvG-ya-bM1"/>
                             <constraint firstItem="6cg-RM-jbY" firstAttribute="trailing" secondItem="Xkw-Q2-5JN" secondAttribute="trailing" id="Dyf-TU-Dg0"/>
-                            <constraint firstItem="rjh-VJ-Cbo" firstAttribute="leading" secondItem="Xkw-Q2-5JN" secondAttribute="leading" constant="100" id="YcE-QX-Ia3"/>
-                            <constraint firstItem="6cg-RM-jbY" firstAttribute="top" secondItem="rjh-VJ-Cbo" secondAttribute="bottom" constant="30" id="jsM-Uv-zd6"/>
+                            <constraint firstItem="rjh-VJ-Cbo" firstAttribute="centerX" secondItem="Ag4-En-Rqj" secondAttribute="centerX" id="dzj-VW-bHa"/>
+                            <constraint firstItem="6cg-RM-jbY" firstAttribute="top" secondItem="rjh-VJ-Cbo" secondAttribute="bottom" constant="15" id="jsM-Uv-zd6"/>
                             <constraint firstItem="6cg-RM-jbY" firstAttribute="bottom" secondItem="Xkw-Q2-5JN" secondAttribute="bottom" id="un5-Lr-ccL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xkw-Q2-5JN"/>
@@ -240,7 +239,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <size key="freeformSize" width="350" height="400"/>
+                    <size key="freeformSize" width="250" height="250"/>
                     <connections>
                         <outlet property="recordingTableView" destination="6cg-RM-jbY" id="Ghm-ag-PHw"/>
                         <outlet property="startButton" destination="rjh-VJ-Cbo" id="uSk-Cr-5tO"/>
@@ -249,7 +248,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjy-oa-tQZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="OHK-Py-luo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="840.79999999999995" y="148.87556221889056"/>
+            <point key="canvasLocation" x="2627" y="23"/>
         </scene>
         <!--Main Navi Controller-->
         <scene sceneID="ejh-X5-uBr">
@@ -268,25 +267,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krW-id-9OZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-6.4748201438848927" y="-609.17266187050359"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Zai-M3-XAI">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AXg-WH-K0X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="gRO-aP-4RD" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <size key="freeformSize" width="350" height="400"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="DSi-hr-C7c">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="zhH-H7-smh" kind="relationship" relationship="rootViewController" id="8eK-zL-I6P"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="-7.2000000000000002" y="148.87556221889056"/>
         </scene>
     </scenes>
 </document>
