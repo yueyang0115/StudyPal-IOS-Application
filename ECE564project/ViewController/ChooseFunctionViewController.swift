@@ -10,12 +10,29 @@ import UIKit
 
 class ChooseFunctionViewController: UIViewController {
 
+    @IBOutlet weak var noteImageView: UIImageView!
+    @IBOutlet weak var noteIconView: UIImageView!
+    @IBOutlet weak var clockImageView: UIImageView!
+    @IBOutlet weak var clockIconView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setAnimation(imageView: noteIconView, num: 197, name: "note", duration: 4)
+        setAnimation(imageView: clockIconView, num: 140, name: "clock", duration: 4)
+        setAnimation(imageView: noteImageView, num: 40, name: "takingnote", duration: 4)
+        setAnimation(imageView: clockImageView, num: 151, name: "study", duration: 4)
     }
     
+    func setAnimation(imageView: UIImageView, num : Int, name: String, duration: Double){
+        var images:[UIImage] = []
+        for n in 0...num {
+            images.append(UIImage(named: "\(name)_\(n)")!)
+        }
+        imageView.animationImages = images
+        imageView.animationDuration = duration
+        imageView.startAnimating()
+        view?.addSubview(imageView)
+    }
 
     /*
     // MARK: - Navigation
