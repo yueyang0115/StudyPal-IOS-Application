@@ -240,7 +240,7 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
             let popoverVc = segue.destination
             popoverVc.modalPresentationStyle = .popover
             popoverVc.popoverPresentationController?.delegate = self;
-            popoverVc.preferredContentSize = CGSize(width: 250, height: 250)
+            popoverVc.preferredContentSize = CGSize(width: 250, height: 300)
         }
     }
 

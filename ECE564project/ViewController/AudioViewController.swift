@@ -16,8 +16,17 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
     var audioPlayer: AVAudioPlayer!
     var numberOfRecording: Int = 0
     
+    @IBOutlet weak var slider: UISlider!
+    @IBOutlet weak var startTime: UILabel!
+    @IBOutlet weak var leftTime: UILabel!
+    @IBOutlet weak var recordTime: UILabel!
+    var recordTimer : Timer?
+    var playTimer: Timer?
+    
     @IBOutlet weak var message: UILabel!
     @IBOutlet weak var toolBar: UIToolbar!
+    
+    @IBOutlet weak var pauseButton: UIBarButtonItem!
     @IBOutlet var StartStopButton: UIBarButtonItem!
     @IBOutlet weak var recordingTableView: UITableView!
 
@@ -27,11 +36,10 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUpRecorder()
-        setUpLabel()
+        setUpView()
     }
     
     func setUpRecorder(){
-        // set up session
         recordingSession = AVAudioSession.sharedInstance()
         // get previous numOfRecording
         if let number:Int = UserDefaults.standard.object(forKey: "recodingNumber") as? Int{
@@ -44,9 +52,18 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         }
     }
     
-    func setUpLabel(){
+    func setUpView(){
         message.lineBreakMode = NSLineBreakMode.byWordWrapping
         message.numberOfLines = 2
+        clearPlayTime()
+        clearRecordTime()
+    }
+    func clearPlayTime(){
+        startTime.text = ""
+        leftTime.text = ""
+    }
+    func clearRecordTime(){
+        recordTime.text = ""
     }
     
     // MARK: - record, play and stop
@@ -54,12 +71,14 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
     @objc @IBAction func recordORstop(_ sender: Any) {
         if(audioRecorder == nil && audioPlayer == nil){
             // start recoding
+            clearPlayTime()
+            startRecordingTimer()
             changeButtonToStop()
+            
             numberOfRecording += 1
             let filename = getDirectory().appendingPathComponent("\(numberOfRecording).m4a")
             let settings = [AVFormatIDKey: Int(kAudioFormatMPEG4AAC), AVSampleRateKey: 12000, AVNumberOfChannelsKey: 1, AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
         
-            // start recording
             do{
                 audioRecorder = try AVAudioRecorder(url: filename, settings: settings)
                 audioRecorder.delegate = self
@@ -71,21 +90,97 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
             }
         }
         else{
-            // stop recoding
             changeButtonToStart()
-            if(audioPlayer != nil && audioPlayer.isPlaying){
+            // stop playing
+            if(audioPlayer != nil){
                 audioPlayer.stop()
                 audioPlayer = nil
-                message.text = "Audio playing is stopped, tap agagin to restart"
+                stopPlayingTimer()
+                message.text = "Audio playing is stopped, click cell to restart"
             }
+            // stop recording
             else{
                 audioRecorder.stop()
                 audioRecorder = nil
+                stopRecordingTimer()
                 UserDefaults.standard.set(numberOfRecording, forKey: "recodingNumber")
                 recordingTableView.reloadData()
                 message.text = "Finished recording"
             }
         }
+    }
+    
+    @IBAction func pause(_ sender: Any) {
+        if(audioRecorder != nil && audioRecorder.isRecording){
+            audioRecorder.pause()
+            message.text = "Recording is paused, tap again to continue"
+        }
+        else if(audioRecorder != nil && !audioRecorder.isRecording){
+            audioRecorder.record()
+            message.text = "Continue recording..."
+        }
+        else if(audioPlayer != nil && audioPlayer.isPlaying){
+            audioPlayer.pause()
+            message.text = "Audio playing is paused, tap again to continue"
+        }
+        else if(audioPlayer != nil && !audioPlayer.isPlaying){
+            audioPlayer.play()
+            message.text = "Continue playing..."
+        }
+    }
+    
+    // MARK: - update slider
+    // change audio time
+    @IBAction func slideAudioTime(_ sender: Any) {
+        if(audioPlayer != nil){
+            audioPlayer.stop()
+            audioPlayer.currentTime = TimeInterval(slider.value)
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+    }
+    
+    // timer which keep updating playing time and slider
+    func startPlayingTimer(){
+        guard playTimer == nil else { return }
+        playTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatePlayingTime), userInfo: nil, repeats: true)
+    }
+    func stopPlayingTimer() {
+      playTimer?.invalidate()
+      playTimer = nil
+    }
+    
+    // timer which keep updating recording time and slider
+    func startRecordingTimer(){
+        guard recordTimer == nil else { return }
+        recordTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateRecordingTime), userInfo: nil, repeats: true)
+    }
+    func stopRecordingTimer() {
+      recordTimer?.invalidate()
+      recordTimer = nil
+    }
+    
+    // update time during playing a audio
+    @objc func updatePlayingTime(){
+        if(audioPlayer != nil){
+            slider.value = (Float)(audioPlayer.currentTime)
+            startTime.text = transformTime(time: audioPlayer.currentTime)
+            leftTime.text = transformTime(time: audioPlayer.duration - audioPlayer.currentTime)
+        }
+    }
+    // update time during recording a audio
+    @objc func updateRecordingTime(){
+        if(audioRecorder != nil){
+            //recordTime.text = (String)(audioRecorder.currentTime)
+            recordTime.text = transformTime(time: audioRecorder.currentTime)
+        }
+    }
+    
+    // get time format
+    func transformTime(time : TimeInterval) -> String{
+        let min:Int = (Int)(time/60)
+        let sec:Int = (Int)(time) - min * 60
+        return NSString(format: "%02d:%02d", min,sec) as String
     }
     
     // get path to directory
@@ -132,12 +227,16 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let path = getDirectory().appendingPathComponent("\(indexPath.row+1).m4a")
         do{
+            startPlayingTimer()
+            clearRecordTime()
+            changeButtonToStop()
+            
             audioPlayer = try AVAudioPlayer(contentsOf: path)
             audioPlayer.play()
-            changeButtonToStop()
             audioPlayer.numberOfLoops = 0
             audioPlayer.delegate = self
             message.text = "Audio is playing..."
+            slider.maximumValue = Float(audioPlayer.duration)
         }
         catch{
             
@@ -163,6 +262,7 @@ extension AudioViewController: AVAudioPlayerDelegate {
             print("Audio player finished playing")
             self.audioPlayer?.stop()
             self.audioPlayer = nil
+            stopPlayingTimer()
             changeButtonToStart()
             message.text = "Finished audio playing"
         }
