@@ -17,10 +17,10 @@ class ChooseFunctionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setAnimation(imageView: noteIconView, num: 197, name: "note", duration: 4)
-        setAnimation(imageView: clockIconView, num: 140, name: "clock", duration: 4)
+        //setAnimation(imageView: noteIconView, num: 197, name: "note", duration: 6)
+        //setAnimation(imageView: clockIconView, num: 140, name: "clock", duration: 6)
         setAnimation(imageView: noteImageView, num: 40, name: "takingnote", duration: 4)
-        setAnimation(imageView: clockImageView, num: 151, name: "study", duration: 4)
+        setAnimation(imageView: clockImageView, num: 151, name: "study", duration: 15)
     }
     
     func setAnimation(imageView: UIImageView, num : Int, name: String, duration: Double){

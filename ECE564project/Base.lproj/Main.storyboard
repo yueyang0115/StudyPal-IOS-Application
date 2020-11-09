@@ -155,81 +155,83 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="qN2-35-qHm">
-                                <rect key="frame" x="15" y="13.5" width="345" height="640"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to do today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQ3-62-QmF">
-                                        <rect key="frame" x="0.0" y="0.0" width="345" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="60" id="uaM-WA-z4B"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                        <color key="textColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takingnote_10" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-Jr-6nH">
-                                        <rect key="frame" x="0.0" y="65" width="345" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="Wyx-aw-3OV"/>
-                                        </constraints>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OXl-xZ-Dza">
-                                        <rect key="frame" x="0.0" y="270" width="345" height="80"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note_47" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-K4-JXb">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="80"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="xx9-iB-y6o"/>
-                                                </constraints>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-69-jua">
-                                                <rect key="frame" x="120" y="0.0" width="225" height="80"/>
-                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                                <size key="titleShadowOffset" width="5" height="5"/>
-                                                <state key="normal" title="Taking Notes Now!"/>
-                                                <connections>
-                                                    <segue destination="7g4-sn-YGb" kind="presentation" modalPresentationStyle="fullScreen" id="UlS-NG-2sJ"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="K43-Od-gCb"/>
-                                        </constraints>
-                                    </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="study_2" translatesAutoresizingMaskIntoConstraints="NO" id="XSm-29-hYz">
-                                        <rect key="frame" x="0.0" y="355" width="345" height="200"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="200" id="Nhk-h1-Sk5"/>
-                                        </constraints>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dif-R1-Drc">
-                                        <rect key="frame" x="0.0" y="560" width="345" height="80"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock_10" translatesAutoresizingMaskIntoConstraints="NO" id="pFJ-pi-g5x">
-                                                <rect key="frame" x="0.0" y="0.0" width="120" height="80"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="120" id="DK9-lh-8AF"/>
-                                                </constraints>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDp-cd-hiI">
-                                                <rect key="frame" x="120" y="0.0" width="225" height="80"/>
-                                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                                <state key="normal" title="Set a clock now!"/>
-                                            </button>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="80" id="Tkg-Iw-0ik"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to do today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQ3-62-QmF">
+                                <rect key="frame" x="15" y="14" width="345" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="uaM-WA-z4B"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                <color key="textColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takingnote_10" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-Jr-6nH">
+                                <rect key="frame" x="15" y="79" width="345" height="196"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="196" id="Wyx-aw-3OV"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note_47" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-K4-JXb">
+                                <rect key="frame" x="20" y="275" width="115" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="aH5-vy-DYz"/>
+                                    <constraint firstAttribute="width" constant="115" id="xx9-iB-y6o"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="study_2" translatesAutoresizingMaskIntoConstraints="NO" id="XSm-29-hYz">
+                                <rect key="frame" x="15" y="370" width="345" height="197"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="197" id="cK6-a3-H6W"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock_10" translatesAutoresizingMaskIntoConstraints="NO" id="pFJ-pi-g5x">
+                                <rect key="frame" x="5" y="577" width="135" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="135" id="DK9-lh-8AF"/>
+                                    <constraint firstAttribute="height" constant="90" id="Z9c-yB-KYS"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RDp-cd-hiI">
+                                <rect key="frame" x="140" y="577" width="196" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="pRh-0c-nJU"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                <state key="normal" title="Set a clock now!"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-69-jua">
+                                <rect key="frame" x="135" y="275" width="211" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="WK8-Eq-FHC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
+                                <size key="titleShadowOffset" width="5" height="5"/>
+                                <state key="normal" title="Taking Notes Now!"/>
+                                <connections>
+                                    <segue destination="7g4-sn-YGb" kind="presentation" modalPresentationStyle="fullScreen" id="UlS-NG-2sJ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="K5K-cX-DNt" firstAttribute="bottom" secondItem="qN2-35-qHm" secondAttribute="bottom" constant="13.5" id="EXp-fQ-FlL"/>
-                            <constraint firstItem="qN2-35-qHm" firstAttribute="top" secondItem="K5K-cX-DNt" secondAttribute="top" constant="13.5" id="R1Q-57-h7S"/>
-                            <constraint firstItem="qN2-35-qHm" firstAttribute="leading" secondItem="K5K-cX-DNt" secondAttribute="leading" constant="15" id="RFt-k8-zfV"/>
-                            <constraint firstItem="K5K-cX-DNt" firstAttribute="trailing" secondItem="qN2-35-qHm" secondAttribute="trailing" constant="15" id="yra-2b-bG2"/>
+                            <constraint firstItem="K5K-cX-DNt" firstAttribute="trailing" secondItem="RDp-cd-hiI" secondAttribute="trailing" constant="39" id="0Iv-i0-OFQ"/>
+                            <constraint firstItem="cQ3-62-QmF" firstAttribute="leading" secondItem="K5K-cX-DNt" secondAttribute="leading" constant="15" id="3KL-D2-iiG"/>
+                            <constraint firstItem="K5K-cX-DNt" firstAttribute="trailing" secondItem="cQ3-62-QmF" secondAttribute="trailing" constant="15" id="AyP-Ks-qXv"/>
+                            <constraint firstItem="a8f-K4-JXb" firstAttribute="leading" secondItem="K5K-cX-DNt" secondAttribute="leading" constant="20" id="I4q-Zl-4iq"/>
+                            <constraint firstAttribute="bottom" secondItem="RDp-cd-hiI" secondAttribute="bottom" id="JRQ-mR-Gtk"/>
+                            <constraint firstItem="XSm-29-hYz" firstAttribute="top" secondItem="a8f-K4-JXb" secondAttribute="bottom" id="JVa-pm-hkW"/>
+                            <constraint firstItem="K5K-cX-DNt" firstAttribute="trailing" secondItem="XSm-29-hYz" secondAttribute="trailing" constant="15" id="Q5w-W9-wqI"/>
+                            <constraint firstItem="K5K-cX-DNt" firstAttribute="trailing" secondItem="tDI-69-jua" secondAttribute="trailing" constant="29" id="TEq-3L-IUF"/>
+                            <constraint firstItem="tDI-69-jua" firstAttribute="top" secondItem="VfX-Jr-6nH" secondAttribute="bottom" id="VJ9-Vz-qsj"/>
+                            <constraint firstItem="VfX-Jr-6nH" firstAttribute="top" secondItem="cQ3-62-QmF" secondAttribute="bottom" constant="5" id="Wf5-V7-dRA"/>
+                            <constraint firstItem="K5K-cX-DNt" firstAttribute="trailing" secondItem="VfX-Jr-6nH" secondAttribute="trailing" constant="15" id="YPe-FI-2gj"/>
+                            <constraint firstItem="VfX-Jr-6nH" firstAttribute="leading" secondItem="K5K-cX-DNt" secondAttribute="leading" constant="15" id="a2y-FA-Gh5"/>
+                            <constraint firstItem="tDI-69-jua" firstAttribute="leading" secondItem="a8f-K4-JXb" secondAttribute="trailing" id="adj-W9-zjh"/>
+                            <constraint firstAttribute="bottom" secondItem="pFJ-pi-g5x" secondAttribute="bottom" id="cNR-zb-RyW"/>
+                            <constraint firstItem="pFJ-pi-g5x" firstAttribute="leading" secondItem="K5K-cX-DNt" secondAttribute="leading" constant="5" id="ekx-y4-UAq"/>
+                            <constraint firstItem="a8f-K4-JXb" firstAttribute="top" secondItem="VfX-Jr-6nH" secondAttribute="bottom" id="f65-j8-SRk"/>
+                            <constraint firstItem="RDp-cd-hiI" firstAttribute="leading" secondItem="pFJ-pi-g5x" secondAttribute="trailing" id="hoa-XO-NWB"/>
+                            <constraint firstItem="XSm-29-hYz" firstAttribute="leading" secondItem="K5K-cX-DNt" secondAttribute="leading" constant="15" id="mVR-Ly-z1z"/>
+                            <constraint firstItem="cQ3-62-QmF" firstAttribute="top" secondItem="K5K-cX-DNt" secondAttribute="top" constant="14" id="nPZ-XD-vwd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K5K-cX-DNt"/>
                     </view>
