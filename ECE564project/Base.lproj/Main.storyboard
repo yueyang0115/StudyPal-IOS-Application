@@ -200,13 +200,42 @@
                                     <constraint firstAttribute="height" constant="100" id="kMe-sQ-yFH"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="recordingCell" id="Zid-WP-PsX">
-                                        <rect key="frame" x="0.0" y="28" width="250" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecordingCell" id="Zid-WP-PsX" customClass="RecordingCell" customModule="ECE564project" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="250" height="40.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zid-WP-PsX" id="fXs-cR-xtt">
-                                            <rect key="frame" x="0.0" y="0.0" width="250" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="250" height="40.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audio6" translatesAutoresizingMaskIntoConstraints="NO" id="8DZ-pv-g0Z">
+                                                    <rect key="frame" x="10" y="0.0" width="80" height="40.5"/>
+                                                    <color key="tintColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="8DZ-pv-g0Z" secondAttribute="height" multiplier="2:1" id="Gnq-yc-7cd"/>
+                                                        <constraint firstAttribute="width" constant="80" id="QTn-SY-Tvm"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkh-6W-Qem">
+                                                    <rect key="frame" x="100" y="2" width="150" height="38.5"/>
+                                                    <fontDescription key="fontDescription" name="ArialHebrew" family="Arial Hebrew" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Fkh-6W-Qem" secondAttribute="bottom" id="5Xk-ST-gOh"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fkh-6W-Qem" secondAttribute="trailing" id="PNw-Je-XOa"/>
+                                                <constraint firstItem="Fkh-6W-Qem" firstAttribute="leading" secondItem="8DZ-pv-g0Z" secondAttribute="trailing" constant="10" id="Rth-X0-Z8p"/>
+                                                <constraint firstItem="Fkh-6W-Qem" firstAttribute="top" secondItem="fXs-cR-xtt" secondAttribute="top" constant="2" id="Zwj-9s-KD3"/>
+                                                <constraint firstItem="8DZ-pv-g0Z" firstAttribute="leading" secondItem="fXs-cR-xtt" secondAttribute="leading" constant="10" id="gtw-hB-FIX"/>
+                                                <constraint firstItem="8DZ-pv-g0Z" firstAttribute="top" secondItem="fXs-cR-xtt" secondAttribute="top" id="rib-K5-GUi"/>
+                                                <constraint firstAttribute="bottom" secondItem="8DZ-pv-g0Z" secondAttribute="bottom" id="uaW-51-s4D"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="cell_image" destination="8DZ-pv-g0Z" id="sjc-AQ-DUq"/>
+                                            <outlet property="cell_name" destination="Fkh-6W-Qem" id="1sU-P4-E9M"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -214,8 +243,11 @@
                                     <outlet property="delegate" destination="zhH-H7-smh" id="wkb-D6-9oa"/>
                                 </connections>
                             </tableView>
-                            <toolbar autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" alpha="0.94999999999999996" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8o-sx-1dT">
-                                <rect key="frame" x="50" y="36" width="200" height="44"/>
+                            <toolbar autoresizesSubviews="NO" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h8o-sx-1dT">
+                                <rect key="frame" x="50" y="60" width="200" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="ZC7-00-ZXo"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="rewind" id="EnY-7Z-VQs"/>
                                     <barButtonItem systemItem="play" id="Ywc-Eg-bqk">
@@ -240,7 +272,7 @@
                             <constraint firstItem="h8o-sx-1dT" firstAttribute="trailing" secondItem="Xkw-Q2-5JN" secondAttribute="trailing" id="AuK-UG-Fdw"/>
                             <constraint firstItem="6cg-RM-jbY" firstAttribute="trailing" secondItem="Xkw-Q2-5JN" secondAttribute="trailing" id="Dyf-TU-Dg0"/>
                             <constraint firstItem="oCZ-0P-MSA" firstAttribute="leading" secondItem="Xkw-Q2-5JN" secondAttribute="leading" constant="15" id="GXn-60-NLK"/>
-                            <constraint firstItem="6cg-RM-jbY" firstAttribute="top" secondItem="h8o-sx-1dT" secondAttribute="bottom" constant="70" id="e7Y-jk-Mtc"/>
+                            <constraint firstItem="6cg-RM-jbY" firstAttribute="top" secondItem="h8o-sx-1dT" secondAttribute="bottom" constant="50" id="e7Y-jk-Mtc"/>
                             <constraint firstItem="6cg-RM-jbY" firstAttribute="top" secondItem="oCZ-0P-MSA" secondAttribute="bottom" constant="10" id="ood-o4-Tyc"/>
                             <constraint firstItem="6cg-RM-jbY" firstAttribute="bottom" secondItem="Xkw-Q2-5JN" secondAttribute="bottom" id="un5-Lr-ccL"/>
                             <constraint firstItem="Xkw-Q2-5JN" firstAttribute="trailing" secondItem="oCZ-0P-MSA" secondAttribute="trailing" id="wSb-pl-s2C"/>
@@ -248,13 +280,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Xkw-Q2-5JN"/>
                     </view>
-                    <navigationItem key="navigationItem" id="l1y-iI-DrA">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="FFW-qG-u2T">
-                            <connections>
-                                <segue destination="OHK-Py-luo" kind="unwind" unwindAction="returnFromFunctionWithSegue:" id="wsk-LF-bYh"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
                     <size key="freeformSize" width="250" height="250"/>
                     <connections>
                         <outlet property="StartStopButton" destination="Ywc-Eg-bqk" id="hzW-w1-uLU"/>
@@ -264,7 +289,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cjy-oa-tQZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="OHK-Py-luo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2625.5999999999999" y="22.488755622188908"/>
         </scene>
@@ -287,4 +311,7 @@
             <point key="canvasLocation" x="-6.4748201438848927" y="-609.17266187050359"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="audio6" width="250" height="125"/>
+    </resources>
 </document>

@@ -122,8 +122,9 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
     
     // return cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recordingCell", for: indexPath)
-        cell.textLabel?.text = String(indexPath.row + 1) // name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RecordingCell", for: indexPath) as! RecordingCell
+        let num = indexPath.row + 1
+        cell.setCell(name: "Audio No.\(num)")
         return cell
     }
     
