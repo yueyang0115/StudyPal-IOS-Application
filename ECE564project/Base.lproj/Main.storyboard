@@ -77,6 +77,10 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="25" minY="10" maxX="25" maxY="10"/>
                         </collectionViewFlowLayout>
+                        <imageView key="backgroundView" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg1" id="P7H-tk-dgY">
+                            <rect key="frame" x="0.0" y="-44" width="375" height="667"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoteCell" id="xcS-Hz-n8g" customClass="NoteCell" customModule="ECE564project" customModuleProvider="target">
                                 <rect key="frame" x="25" y="10" width="148" height="190"/>
@@ -155,13 +159,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg1" translatesAutoresizingMaskIntoConstraints="NO" id="ipK-ER-I19">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What do you want to do today?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cQ3-62-QmF">
                                 <rect key="frame" x="15" y="14" width="345" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="uaM-WA-z4B"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                <color key="textColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="takingnote_10" translatesAutoresizingMaskIntoConstraints="NO" id="VfX-Jr-6nH">
@@ -170,7 +178,7 @@
                                     <constraint firstAttribute="height" constant="196" id="Wyx-aw-3OV"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note_47" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-K4-JXb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="note" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-K4-JXb">
                                 <rect key="frame" x="20" y="275" width="115" height="95"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="95" id="aH5-vy-DYz"/>
@@ -183,7 +191,7 @@
                                     <constraint firstAttribute="height" constant="197" id="cK6-a3-H6W"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock_10" translatesAutoresizingMaskIntoConstraints="NO" id="pFJ-pi-g5x">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="pFJ-pi-g5x">
                                 <rect key="frame" x="5" y="577" width="135" height="90"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="135" id="DK9-lh-8AF"/>
@@ -196,7 +204,12 @@
                                     <constraint firstAttribute="height" constant="90" id="pRh-0c-nJU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
-                                <state key="normal" title="Set a clock now!"/>
+                                <state key="normal" title="Set a clock now!">
+                                    <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Rla-72-KTH" kind="presentation" id="LU2-dq-yIP"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-69-jua">
                                 <rect key="frame" x="135" y="275" width="211" height="95"/>
@@ -205,7 +218,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="20"/>
                                 <size key="titleShadowOffset" width="5" height="5"/>
-                                <state key="normal" title="Taking Notes Now!"/>
+                                <state key="normal" title="Take Notes Now!">
+                                    <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <segue destination="7g4-sn-YGb" kind="presentation" modalPresentationStyle="fullScreen" id="UlS-NG-2sJ"/>
                                 </connections>
@@ -433,12 +448,47 @@
             </objects>
             <point key="canvasLocation" x="22" y="-609"/>
         </scene>
+        <!--Counter View Controller-->
+        <scene sceneID="u88-8C-ZGq">
+            <objects>
+                <viewController id="Rla-72-KTH" customClass="CounterViewController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kyd-j7-KDh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg1" translatesAutoresizingMaskIntoConstraints="NO" id="aEU-5H-pU8">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="start" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXJ-Sp-Vop">
+                                <rect key="frame" x="156.5" y="307" width="62" height="33.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
+                                <color key="textColor" red="0.94628354199999998" green="0.93498112840000003" blue="0.9634460977" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="uXJ-Sp-Vop" firstAttribute="centerX" secondItem="Kyd-j7-KDh" secondAttribute="centerX" id="k8a-r7-Mjs"/>
+                            <constraint firstItem="uXJ-Sp-Vop" firstAttribute="centerY" secondItem="Kyd-j7-KDh" secondAttribute="centerY" id="oeJ-2V-KVN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rLy-M4-7KP"/>
+                    </view>
+                    <connections>
+                        <outlet property="timeLabel" destination="uXJ-Sp-Vop" id="Mpl-bl-Fr8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hk5-Ay-iEK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-127.2" y="170.46476761619192"/>
+        </scene>
     </scenes>
     <resources>
         <image name="audio1" width="350" height="348"/>
         <image name="audio6" width="250" height="125"/>
-        <image name="clock_10" width="400" height="300"/>
-        <image name="note_47" width="504" height="373"/>
+        <image name="bg1" width="375" height="667"/>
+        <image name="clock" width="400" height="300"/>
+        <image name="note" width="504" height="373"/>
         <image name="study_2" width="444" height="250"/>
         <image name="takingnote_10" width="498" height="278"/>
     </resources>
