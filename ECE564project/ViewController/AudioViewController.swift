@@ -140,6 +140,28 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         }
     }
     
+    @IBAction func playFast(_ sender: Any) {
+        if(audioPlayer != nil){
+            audioPlayer.stop()
+            if(audioPlayer.currentTime + TimeInterval(5) < audioPlayer.duration){
+                audioPlayer.currentTime = audioPlayer.currentTime + TimeInterval(5)
+            }
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+    }
+    
+    @IBAction func playSlow(_ sender: Any) {
+        if(audioPlayer != nil){
+            audioPlayer.stop()
+            if(audioPlayer.currentTime - TimeInterval(5) > 0){
+                audioPlayer.currentTime = audioPlayer.currentTime - TimeInterval(5)
+            }
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        }
+    }
+    
     // timer which keep updating playing time and slider
     func startPlayingTimer(){
         guard playTimer == nil else { return }

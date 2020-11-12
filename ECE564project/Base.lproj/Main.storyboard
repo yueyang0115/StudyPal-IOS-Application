@@ -325,7 +325,11 @@
                                     <constraint firstAttribute="height" constant="40" id="ZC7-00-ZXo"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem systemItem="rewind" id="EnY-7Z-VQs"/>
+                                    <barButtonItem systemItem="rewind" id="EnY-7Z-VQs">
+                                        <connections>
+                                            <action selector="playSlow:" destination="zhH-H7-smh" id="9ax-dg-bb4"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem systemItem="play" id="Ywc-Eg-bqk">
                                         <connections>
                                             <action selector="recordORstop:" destination="zhH-H7-smh" id="huV-v5-fJF"/>
@@ -336,7 +340,11 @@
                                             <action selector="pause:" destination="zhH-H7-smh" id="isg-Ld-mkc"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem systemItem="fastForward" id="oSv-W6-Y1Y"/>
+                                    <barButtonItem systemItem="fastForward" id="oSv-W6-Y1Y">
+                                        <connections>
+                                            <action selector="playFast:" destination="zhH-H7-smh" id="5y2-nr-bRb"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record or play audio!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oCZ-0P-MSA">
