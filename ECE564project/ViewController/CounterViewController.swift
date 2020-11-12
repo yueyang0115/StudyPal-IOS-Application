@@ -11,8 +11,10 @@ import UIKit
 class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     var circlePath: UIBezierPath!
-    let shapeLayer = CAShapeLayer()
-    var pulsatingLayer = CAShapeLayer()
+    let foreProgressLayer = CAShapeLayer()
+    let backProgressLayer = CAShapeLayer()
+    let animation = CABasicAnimation(keyPath: "strokeEnd")
+    var isAniationStarted = false
     
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -31,11 +33,12 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         super.viewDidLoad()
         
         setCirclePath()
-        createBackgroundLayer()
-        createShapeLayer()
+        createBackProgressLayer()
+        createForeProgressLayer()
         // Do any additional setup after loading the view.
     }
     
+    // MARK: - set up timer
     @IBAction func controlTimer(_ sender: Any) {
         if(timerMode == .initial){
             if(time != 0){
@@ -61,13 +64,12 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         pickerView.isHidden = false
     }
     
-    
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     
     @objc func updateTimer(){
-        if(time == 0){
+        if(time <= 0){
             timer.invalidate()
             time = 0
             timerMode = .initial
@@ -84,41 +86,44 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         return String(format:"%02i:%02i", minutes, seconds)
     }
     
+    // MARK: - set progress animation
+    
     func setCirclePath(){
         circlePath = UIBezierPath(arcCenter: .zero, radius: 100, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
     }
     
-    func createBackgroundLayer(){
-        let backgroundLayer = CAShapeLayer()
+    // draw progress circle background circle
+    func createBackProgressLayer(){
         
-        backgroundLayer.path = circlePath.cgPath
-        backgroundLayer.strokeColor = UIColor.trackStrokeColor.cgColor
-        backgroundLayer.lineWidth = 20
-        backgroundLayer.fillColor = UIColor.clear.cgColor
-        backgroundLayer.lineCap = .round
-        backgroundLayer.position = view.center
+        backProgressLayer.path = circlePath.cgPath
+        backProgressLayer.strokeColor = UIColor.trackStrokeColor.cgColor
+        backProgressLayer.lineWidth = 20
+        backProgressLayer.fillColor = UIColor.clear.cgColor
+        backProgressLayer.lineCap = .round
+        backProgressLayer.position = view.center
         
-        view.layer.addSublayer(backgroundLayer)
+        view.layer.addSublayer(backProgressLayer)
     }
         
-    func createShapeLayer() {
-        shapeLayer.path = circlePath.cgPath
-        shapeLayer.strokeColor = UIColor.outlineStrokeColor.cgColor
-        shapeLayer.lineWidth = 20
-        shapeLayer.fillColor = UIColor.clear.cgColor
-        shapeLayer.lineCap = .round
-        shapeLayer.position = view.center
-        shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi/2, 0, 0, 1)
+     // draw progress circle foreground circle
+    func createForeProgressLayer() {
+        foreProgressLayer.path = circlePath.cgPath
+        foreProgressLayer.strokeColor = UIColor.outlineStrokeColor.cgColor
+        foreProgressLayer.lineWidth = 20
+        foreProgressLayer.fillColor = UIColor.clear.cgColor
+        foreProgressLayer.lineCap = .round
+        foreProgressLayer.position = view.center
+        foreProgressLayer.transform = CATransform3DMakeRotation(-CGFloat.pi/2, 0, 0, 1)
         
-        shapeLayer.strokeEnd = 0
+        foreProgressLayer.strokeEnd = 0
         
-        view.layer.addSublayer(shapeLayer)
+        view.layer.addSublayer(foreProgressLayer)
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(process)))
     }
     
     func beginCounter(){
         print("trying to count down")
-        shapeLayer.strokeEnd = 0
+        foreProgressLayer.strokeEnd = 0
 
     }
     
@@ -135,7 +140,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         basicAnimation.fillMode = .forwards
         basicAnimation.isRemovedOnCompletion = false
-        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
+        foreProgressLayer.add(basicAnimation, forKey: "urSoBasic")
     }
     
     
