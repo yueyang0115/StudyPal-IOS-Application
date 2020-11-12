@@ -12,10 +12,13 @@ import UserNotifications
 class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CAAnimationDelegate{
 
     var circlePath: UIBezierPath!
-    let foreProgressLayer = CAShapeLayer()
+    var foreProgressLayer: CAShapeLayer!
+    var passforeProgressLayer: CAShapeLayer!
     let backProgressLayer = CAShapeLayer()
-    let animation = CABasicAnimation(keyPath: "strokeEnd")
+    var animation: CABasicAnimation!
+    var passanimation: CABasicAnimation!
     var isAniationStarted = false
+    var isViewChange = false
     
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var timeLabel: UILabel!
@@ -26,17 +29,47 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     var timer = Timer()
     var time:Int = 0
+    var passTime:Int = 0
     var timerMode: TimerMode = .initial
     let availableMinutes = Array(1...60)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
+        isViewChange = false
+        timeLabel.text = ""
         setCirclePath()
         createBackProgressLayer()
         //createForeProgressLayer()
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.foreProgressLayer = passforeProgressLayer
+        self.animation = passanimation
+        
+        
+        
+        if(passTime == 0){
+            timeLabel.text = formatTime(time: 0)
+            startButton.setTitle("Start", for: .normal)
+            startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
+        }
+        else{
+            time = passTime
+            timeLabel.text = formatTime(time: time)
+            
+            
+            //foreProgressLayer.add(animation, forKey: "strokeEnd")
+            
+            //createForeProgressLayer()
+            resumeAnimation()
+            startTimer()
+            timerMode = .running
+            startButton.setTitle("Pause", for: .normal)
+            startButton.setTitleColor(UIColor.orange, for: .normal)
+            pickerView.isHidden = true
+        }
     }
     
     // MARK: - set up timer
@@ -84,14 +117,15 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             timeLabel.text = formatTime(time: time)
             startButton.setTitle("start", for: .normal)
             startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
+            pickerView.isHidden = false
         }
         else{
             time -= 1
             timeLabel.text = formatTime(time: time)
         }
-        if(!isAniationStarted && timerMode == .running){
-            startAnimationTime(time: time)
-        }
+//        if(!isAniationStarted && timerMode == .running){
+//            startAnimationTime(time: time)
+//        }
     }
     
     func formatTime(time: Int)->String{
@@ -155,20 +189,20 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         isAniationStarted = true
     }
     
-    func startAnimationTime(time: Int) {
-        resetAnimation()
-        foreProgressLayer.strokeEnd = 0.0
-        animation.keyPath = "strokeEnd"
-        animation.fromValue = 0
-        animation.toValue = 1
-        animation.duration = CFTimeInterval(time)
-        animation.delegate = self
-        animation.isRemovedOnCompletion = false
-        animation.isAdditive = true
-        animation.fillMode = CAMediaTimingFillMode.forwards
-        foreProgressLayer.add(animation, forKey: "strokeEnd")
-        isAniationStarted = true
-    }
+//    func startAnimationTime(time: Int) {
+//        resetAnimation()
+//        foreProgressLayer.strokeEnd = 0.0
+//        animation.keyPath = "strokeEnd"
+//        animation.fromValue = 0
+//        animation.toValue = 1
+//        animation.duration = CFTimeInterval(time)
+//        animation.delegate = self
+//        animation.isRemovedOnCompletion = false
+//        animation.isAdditive = true
+//        animation.fillMode = CAMediaTimingFillMode.forwards
+//        foreProgressLayer.add(animation, forKey: "strokeEnd")
+//        isAniationStarted = true
+//    }
     
     func pauseAnimation(){
         let pausedTime = foreProgressLayer.convertTime(CACurrentMediaTime(), from: nil)
@@ -203,33 +237,35 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        stopAnimation()
+        if(!isViewChange){
+            stopAnimation()
+        }else if(time != 0 && isAniationStarted){
+            pauseAnimation()
+            resumeAnimation()
+        }
     }
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        isViewChange = true
+        pauseAnimation()
+        timer.invalidate()
+        timerMode = .initial
     }
-    */
 
      // MARK: - set up pickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        let res: String = "\(availableMinutes[row]) min"
-//        time = availableMinutes[row] * 60
-//        return res
-//    }
-    
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         let res: String = "\(availableMinutes[row]) min"
-        time = availableMinutes[row] * 60
+        //time = availableMinutes[row] * 60
         return NSAttributedString(string: res, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
     
@@ -238,6 +274,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        time = availableMinutes[row] * 60
         timeLabel.text = formatTime(time: availableMinutes[row] * 60)
     }
 }

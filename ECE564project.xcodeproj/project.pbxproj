@@ -70,14 +70,14 @@
 		1D19A9A725487CF900B09BEB /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				1D19A9AE2548988E00B09BEB /* NewDrawingViewController.swift */,
 				1D62418125512CB700D3CD9D /* AllNotesCollectionViewController.swift */,
+				1D19A9AE2548988E00B09BEB /* NewDrawingViewController.swift */,
+				1D6AF76C2557C2BB00E89523 /* AudioViewController.swift */,
 				1D62418B2551511600D3CD9D /* MainNaviController.swift */,
 				1D6AF76825566EE100E89523 /* DrawNaviController.swift */,
-				1D6AF76A2557AEAE00E89523 /* ChooseFunctionViewController.swift */,
-				1D6AF76C2557C2BB00E89523 /* AudioViewController.swift */,
-				1DE1042D25595AAD00BF680E /* CounterViewController.swift */,
 				1DCB920A255DDD530071CCC1 /* ClockNaviController.swift */,
+				1D6AF76A2557AEAE00E89523 /* ChooseFunctionViewController.swift */,
+				1DE1042D25595AAD00BF680E /* CounterViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";

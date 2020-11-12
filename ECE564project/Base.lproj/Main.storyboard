@@ -515,7 +515,7 @@
                     <navigationItem key="navigationItem" id="BJ0-Gx-tZj">
                         <barButtonItem key="leftBarButtonItem" title="Done" id="nBa-2j-bZT">
                             <connections>
-                                <segue destination="ACr-fX-Bgy" kind="unwind" unwindAction="returnFromFunctionWithSegue:" id="GDD-ej-9Kv"/>
+                                <segue destination="ACr-fX-Bgy" kind="unwind" identifier="fromClockToFucntion" unwindAction="returnFromFunctionWithSegue:" id="GDD-ej-9Kv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

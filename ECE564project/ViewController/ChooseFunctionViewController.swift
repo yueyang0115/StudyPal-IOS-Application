@@ -15,7 +15,12 @@ class ChooseFunctionViewController: UIViewController {
     @IBOutlet weak var clockImageView: UIImageView!
     @IBOutlet weak var clockIconView: UIImageView!
     
-    //var timer: Timer
+    var timer = Timer()
+    var time: Int = 0
+    var timerMode: TimerMode = .initial
+    var animation = CABasicAnimation(keyPath: "strokeEnd")
+    var isAniationStarted = false
+    var foreProgressLayer = CAShapeLayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +51,26 @@ class ChooseFunctionViewController: UIViewController {
         if(segue.identifier == "toClock"){
             let navController = segue.destination as! ClockNaviController
             let dst = navController.topViewController as! CounterViewController
-            //dst.timer = self.timer
+            dst.timer = self.timer
+            dst.passTime = self.time
+            dst.timerMode = self.timerMode
+            dst.passanimation = self.animation
+            dst.isAniationStarted = self.isAniationStarted
+            dst.passforeProgressLayer = self.foreProgressLayer
         }
         
     }
     
     
     @IBAction func returnFromFunction(segue: UIStoryboardSegue){
-       
-        
+        if(segue.identifier == "fromClockToFucntion") {
+            let source = segue.source as! CounterViewController
+            self.timer = source.timer
+            self.time = source.time
+            self.timerMode = source.timerMode
+            self.animation = source.animation
+            self.isAniationStarted = source.isAniationStarted
+            self.foreProgressLayer = source.foreProgressLayer
+        }
     }
 }
