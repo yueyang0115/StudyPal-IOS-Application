@@ -208,7 +208,7 @@
                                     <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="mvj-tu-4sj" kind="presentation" modalPresentationStyle="fullScreen" id="LU2-dq-yIP"/>
+                                    <segue destination="mvj-tu-4sj" kind="presentation" identifier="toClock" modalPresentationStyle="fullScreen" id="LU2-dq-yIP"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tDI-69-jua">
@@ -513,7 +513,7 @@
                         <viewLayoutGuide key="safeArea" id="rLy-M4-7KP"/>
                     </view>
                     <navigationItem key="navigationItem" id="BJ0-Gx-tZj">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="nBa-2j-bZT">
+                        <barButtonItem key="leftBarButtonItem" title="Done" id="nBa-2j-bZT">
                             <connections>
                                 <segue destination="ACr-fX-Bgy" kind="unwind" unwindAction="returnFromFunctionWithSegue:" id="GDD-ej-9Kv"/>
                             </connections>
@@ -531,10 +531,10 @@
             </objects>
             <point key="canvasLocation" x="812" y="170.46476761619192"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Clock Navi Controller-->
         <scene sceneID="7BE-yh-N79">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mvj-tu-4sj" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mvj-tu-4sj" customClass="ClockNaviController" customModule="ECE564project" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cNy-Tf-MDx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CAAnimationDelegate{
 
@@ -80,11 +81,17 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             timer.invalidate()
             time = 0
             timerMode = .initial
-            timeLabel.text = "0"
+            timeLabel.text = formatTime(time: time)
             startButton.setTitle("start", for: .normal)
+            startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
         }
-        time -= 1
-        timeLabel.text = formatTime(time: time)
+        else{
+            time -= 1
+            timeLabel.text = formatTime(time: time)
+        }
+        if(!isAniationStarted && timerMode == .running){
+            startAnimationTime(time: time)
+        }
     }
     
     func formatTime(time: Int)->String{
@@ -120,11 +127,8 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         foreProgressLayer.lineCap = .round
         foreProgressLayer.position = view.center
         foreProgressLayer.transform = CATransform3DMakeRotation(-CGFloat.pi/2, 0, 0, 1)
-        
-//        foreProgressLayer.strokeEnd = 0
-        
+ 
         view.layer.addSublayer(foreProgressLayer)
-//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(process)))
     }
     
     func startResumeAnimation(){
@@ -149,7 +153,21 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         animation.fillMode = CAMediaTimingFillMode.forwards
         foreProgressLayer.add(animation, forKey: "strokeEnd")
         isAniationStarted = true
+    }
     
+    func startAnimationTime(time: Int) {
+        resetAnimation()
+        foreProgressLayer.strokeEnd = 0.0
+        animation.keyPath = "strokeEnd"
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = CFTimeInterval(time)
+        animation.delegate = self
+        animation.isRemovedOnCompletion = false
+        animation.isAdditive = true
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        foreProgressLayer.add(animation, forKey: "strokeEnd")
+        isAniationStarted = true
     }
     
     func pauseAnimation(){

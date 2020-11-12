@@ -20,6 +20,7 @@
 		1DBBA9162553CBA7000D808D /* DataModelCotroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DBBA9152553CBA6000D808D /* DataModelCotroller.swift */; };
 		1DCB9207255B12500071CCC1 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCB9206255B124F0071CCC1 /* Colors.swift */; };
 		1DCB9209255D923C0071CCC1 /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCB9208255D923C0071CCC1 /* TimeHelper.swift */; };
+		1DCB920B255DDD530071CCC1 /* ClockNaviController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCB920A255DDD530071CCC1 /* ClockNaviController.swift */; };
 		1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEADF253E886A005A385D /* AppDelegate.swift */; };
 		1DCEEAE2253E886A005A385D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE1253E886A005A385D /* SceneDelegate.swift */; };
 		1DCEEAE7253E886A005A385D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DCEEAE5253E886A005A385D /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 		1DBBA9152553CBA6000D808D /* DataModelCotroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModelCotroller.swift; sourceTree = "<group>"; };
 		1DCB9206255B124F0071CCC1 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		1DCB9208255D923C0071CCC1 /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
+		1DCB920A255DDD530071CCC1 /* ClockNaviController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClockNaviController.swift; sourceTree = "<group>"; };
 		1DCEEADC253E886A005A385D /* ECE564project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ECE564project.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DCEEADF253E886A005A385D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1DCEEAE1253E886A005A385D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				1D6AF76A2557AEAE00E89523 /* ChooseFunctionViewController.swift */,
 				1D6AF76C2557C2BB00E89523 /* AudioViewController.swift */,
 				1DE1042D25595AAD00BF680E /* CounterViewController.swift */,
+				1DCB920A255DDD530071CCC1 /* ClockNaviController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				1DCEEAEA253E886A005A385D /* ECE564project.xcdatamodeld in Sources */,
 				1D62418225512CB700D3CD9D /* AllNotesCollectionViewController.swift in Sources */,
 				1DCEEAE0253E886A005A385D /* AppDelegate.swift in Sources */,
+				1DCB920B255DDD530071CCC1 /* ClockNaviController.swift in Sources */,
 				1D62418C2551511600D3CD9D /* MainNaviController.swift in Sources */,
 				1D6AF7712558B16100E89523 /* RecordingCell.swift in Sources */,
 				1D19A9AF2548988E00B09BEB /* NewDrawingViewController.swift in Sources */,
