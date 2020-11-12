@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, CAAnimationDelegate{
 
     var circlePath: UIBezierPath!
     let foreProgressLayer = CAShapeLayer()
@@ -21,7 +21,6 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var startImage: UIImageView!
     var selectPickerIndex = 0
     
     var timer = Timer()
@@ -32,9 +31,10 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
         setCirclePath()
         createBackProgressLayer()
-        createForeProgressLayer()
+        //createForeProgressLayer()
         // Do any additional setup after loading the view.
     }
     
@@ -42,25 +42,32 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     @IBAction func controlTimer(_ sender: Any) {
         if(timerMode == .initial){
             if(time != 0){
+                createForeProgressLayer()
+                startResumeAnimation()
                 startTimer()
                 timerMode = .running
-                startButton.setTitle("pause", for: .normal)
+                startButton.setTitle("Pause", for: .normal)
+                startButton.setTitleColor(UIColor.orange, for: .normal)
                 pickerView.isHidden = true
             }
         }
         else{
+            pauseAnimation()
             timer.invalidate()
             timerMode = .initial
-            startButton.setTitle("start", for: .normal)
+            startButton.setTitle("Start", for: .normal)
+            startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
         }
     }
     
     @IBAction func cancel(_ sender: Any) {
+        stopAnimation()
         timer.invalidate()
         timerMode = .initial
         time = 0
         timeLabel.text = "00:00"
-        startButton.setTitle("start", for: .normal)
+        startButton.setTitle("Start", for: .normal)
+        startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
         pickerView.isHidden = false
     }
     
@@ -94,7 +101,6 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     // draw progress circle background circle
     func createBackProgressLayer(){
-        
         backProgressLayer.path = circlePath.cgPath
         backProgressLayer.strokeColor = UIColor.trackStrokeColor.cgColor
         backProgressLayer.lineWidth = 20
@@ -115,36 +121,72 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         foreProgressLayer.position = view.center
         foreProgressLayer.transform = CATransform3DMakeRotation(-CGFloat.pi/2, 0, 0, 1)
         
-        foreProgressLayer.strokeEnd = 0
+//        foreProgressLayer.strokeEnd = 0
         
         view.layer.addSublayer(foreProgressLayer)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(process)))
+//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(process)))
     }
     
-    func beginCounter(){
-        print("trying to count down")
-        foreProgressLayer.strokeEnd = 0
-
+    func startResumeAnimation(){
+        if(!isAniationStarted){
+            startAnimation()
+        }
+        else{
+            resumeAnimation()
+        }
     }
     
-    @objc private func process(){
-        print("try to animate stroke")
-        beginCounter()
-        animateCircle()
+    func startAnimation() {
+        resetAnimation()
+        foreProgressLayer.strokeEnd = 0.0
+        animation.keyPath = "strokeEnd"
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = CFTimeInterval(time)
+        animation.delegate = self
+        animation.isRemovedOnCompletion = false
+        animation.isAdditive = true
+        animation.fillMode = CAMediaTimingFillMode.forwards
+        foreProgressLayer.add(animation, forKey: "strokeEnd")
+        isAniationStarted = true
+    
     }
     
-    func animateCircle() {
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 2
-        
-        basicAnimation.fillMode = .forwards
-        basicAnimation.isRemovedOnCompletion = false
-        foreProgressLayer.add(basicAnimation, forKey: "urSoBasic")
+    func pauseAnimation(){
+        let pausedTime = foreProgressLayer.convertTime(CACurrentMediaTime(), from: nil)
+        foreProgressLayer.speed = 0.0
+        foreProgressLayer.timeOffset = pausedTime
     }
     
+    func resumeAnimation(){
+        let pausedTime = foreProgressLayer.convertTime(CACurrentMediaTime(), from: nil)
+        foreProgressLayer.speed = 1.0
+        foreProgressLayer.timeOffset = 0.0
+        foreProgressLayer.beginTime = 0.0
+        let timeSincePaused = foreProgressLayer.convertTime(CACurrentMediaTime(), from:nil) - pausedTime
+        foreProgressLayer.beginTime = timeSincePaused
+    }
     
+    func resetAnimation() {
+        foreProgressLayer.speed = 1.0
+        foreProgressLayer.timeOffset = 0.0
+        foreProgressLayer.beginTime = 0.0
+        foreProgressLayer.strokeEnd = 0.0
+        isAniationStarted = false
+    }
     
+    func stopAnimation(){
+        foreProgressLayer.speed = 1.0
+        foreProgressLayer.timeOffset = 0.0
+        foreProgressLayer.beginTime = 0.0
+        foreProgressLayer.strokeEnd = 0.0
+        foreProgressLayer.removeAllAnimations()
+        isAniationStarted = false
+    }
+    
+    internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        stopAnimation()
+    }
 
     /*
     // MARK: - Navigation
