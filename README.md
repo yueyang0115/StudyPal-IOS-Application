@@ -1,5 +1,5 @@
 ## Key Features ##  
-#### Taking Notes In Class ####
+#### Taking Notes ####
 1. Create a new note
 2. Save and share note as an image in the phone's album or files folder
 3. Change a note to read mode or edit node, 
@@ -9,7 +9,7 @@ when in read mode, can scroll the page and see all content
 6. Use pencilKit to choose different colors and pencils to draw
 7. Rotate the phone to have  a scaled view of the note
 8. Once update, the preview of note will update either
-#### Make A Class Audio Recording ####
+#### Make An Audio Recording ####
 1. Start a new recoding with recoding time displayed
 2. Pause recoding/playing and finish recording/playing
 3. List all history recordings
@@ -30,8 +30,9 @@ when in read mode, can scroll the page and see all content
 5. Let user control the audio playing, pause, fastforword, rewind, slide time
 6. Improve user experience by providing image-preview of all the created notes
 ## How To Test ##
-This IOS application is supposed to be deployed on iphone SE 2nd generation.
-When the app asks for permission, please give it accesses to what it asks
+This IOS application is supposed to be deployed on iphone SE 2nd generation.  
+When the app asks for permission, please give it accesses to what it asks.  
+When first launch, give it some time to load.  
 
 
 
