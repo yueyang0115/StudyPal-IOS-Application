@@ -12,16 +12,21 @@ class DrawNaviController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateNavigationBarBackground()
     }
     
-    override func viewDidAppear(_ animated: Bool){
-        super.viewDidAppear(animated);
-        
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        updateNavigationBarBackground()
     }
-
-    // MARK: - Navigation
-    // preparation, pass information of the chosen person to BackViewController
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    // updateNavigationBarBackground
+    func updateNavigationBarBackground() {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        UIColor.secondarySystemBackground.withAlphaComponent(0.95).set()
+        UIBezierPath(rect: CGRect(x: 0, y: 0, width: 1, height: 1)).fill()
+        navigationBar.setBackgroundImage(UIGraphicsGetImageFromCurrentImageContext(), for: .default)
+        UIGraphicsEndImageContext()
     }
     
 }

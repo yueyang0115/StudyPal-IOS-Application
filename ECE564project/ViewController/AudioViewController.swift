@@ -34,11 +34,11 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         setUpRecorder()
         setUpView()
     }
     
+    // set up audio recorder
     func setUpRecorder(){
         recordingSession = AVAudioSession.sharedInstance()
         // get previous numOfRecording
@@ -58,16 +58,19 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         clearPlayTime()
         clearRecordTime()
     }
+    
     func clearPlayTime(){
         startTime.text = ""
         leftTime.text = ""
     }
+    
     func clearRecordTime(){
         recordTime.text = ""
     }
     
     // MARK: - record, play and stop
     
+    // start or stop audio, play or record
     @objc @IBAction func recordORstop(_ sender: Any) {
         if(audioRecorder == nil && audioPlayer == nil){
             // start recoding
@@ -110,6 +113,7 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         }
     }
     
+    // pause audio
     @IBAction func pause(_ sender: Any) {
         if(audioRecorder != nil && audioRecorder.isRecording){
             audioRecorder.pause()
@@ -140,6 +144,7 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         }
     }
     
+    // fastforwad a audio
     @IBAction func playFast(_ sender: Any) {
         if(audioPlayer != nil){
             audioPlayer.stop()
@@ -151,6 +156,7 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         }
     }
     
+    // rewind an audio
     @IBAction func playSlow(_ sender: Any) {
         if(audioPlayer != nil){
             audioPlayer.stop()
@@ -167,6 +173,7 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         guard playTimer == nil else { return }
         playTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updatePlayingTime), userInfo: nil, repeats: true)
     }
+    
     func stopPlayingTimer() {
       playTimer?.invalidate()
       playTimer = nil
@@ -177,6 +184,7 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
         guard recordTimer == nil else { return }
         recordTimer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateRecordingTime), userInfo: nil, repeats: true)
     }
+    
     func stopRecordingTimer() {
       recordTimer?.invalidate()
       recordTimer = nil
@@ -190,6 +198,7 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
             leftTime.text = transformTime(time: audioPlayer.duration - audioPlayer.currentTime)
         }
     }
+    
     // update time during recording a audio
     @objc func updateRecordingTime(){
         if(audioRecorder != nil){
@@ -221,11 +230,13 @@ class AudioViewController: UIViewController, AVAudioRecorderDelegate, UITableVie
     
     // MARK: - button view
     
+    // change button image to stop
     func changeButtonToStop(){
         StartStopButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.stop, target: self, action: #selector(recordORstop(_:)))
         toolBar.items![1] = StartStopButton
     }
     
+    // change button image to start
     func changeButtonToStart(){
         StartStopButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.play, target: self, action: #selector(recordORstop(_:)))
         toolBar.items![1] = StartStopButton

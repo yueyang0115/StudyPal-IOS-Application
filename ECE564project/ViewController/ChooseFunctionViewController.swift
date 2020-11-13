@@ -30,6 +30,7 @@ class ChooseFunctionViewController: UIViewController {
         setAnimation(imageView: clockImageView, num: 151, name: "study", duration: 15)
     }
     
+    // set animations in this view
     func setAnimation(imageView: UIImageView, num : Int, name: String, duration: Double){
         var images:[UIImage] = []
         for n in 0...num {
@@ -45,6 +46,7 @@ class ChooseFunctionViewController: UIViewController {
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // pass current timer and animation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
@@ -61,7 +63,7 @@ class ChooseFunctionViewController: UIViewController {
         
     }
     
-    
+    // restore current timer and animation
     @IBAction func returnFromFunction(segue: UIStoryboardSegue){
         if(segue.identifier == "fromClockToFucntion") {
             let source = segue.source as! CounterViewController

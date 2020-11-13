@@ -10,71 +10,62 @@ import UIKit
 import PencilKit
 import os
 
-/// `DataModelControllerObserver` is the behavior of an observer of data model changes.
+// DataModelControllerObserver observers data model changes
 protocol DataModelControllerObserver {
-    /// Invoked when the data model changes.
     func dataModelChanged()
 }
 
-/// `DataModelController` coordinates changes to the data  model.
+// DataModelController coordinates changes to the data model.
 class DataModelController {
     
-    /// The underlying data model.
     var dataModel = DataModel()
     
-    /// Thumbnail images representing the drawings in the data model.
+    // Thumbnail images representing the drawings in the data model.
     var thumbnails = [UIImage]()
     var thumbnailTraitCollection = UITraitCollection() {
         didSet {
-            // If the user interface style changed, regenerate all thumbnails.
+            // regenerate all thumbnails when user interface style changed
             if oldValue.userInterfaceStyle != thumbnailTraitCollection.userInterfaceStyle {
                 generateAllThumbnails()
             }
         }
     }
     
-    /// Dispatch queues for the background operations done by this controller.
+    // background operations done by this controller
     private let thumbnailQueue = DispatchQueue(label: "ThumbnailQueue", qos: .background)
     private let serializationQueue = DispatchQueue(label: "SerializationQueue", qos: .background)
     
-    /// Observers add themselves to this array to start being informed of data model changes.
+    // Observers add themselves to this array to start being informed of data model changes
     var observers = [DataModelControllerObserver]()
     
-    /// The size to use for thumbnail images.
     static let thumbnailSize = CGSize(width: 128, height: 170)
     
-    /// Computed property providing access to the drawings in the data model.
+    // Computed property providing access to the drawings in the data model.
     var drawings: [PKDrawing] {
         get { dataModel.drawings }
         set { dataModel.drawings = newValue }
     }
-    /// Computed property providing access to the signature in the data model.
-    var signature: PKDrawing {
-        get { dataModel.signature }
-        set { dataModel.signature = newValue }
-    }
     
-    /// Initialize a new data model.
+    // Initialize a new data model.
     init() {
         loadDataModel()
     }
     
-    /// Update a drawing at `index` and generate a new thumbnail.
+    // Update drawing and generate new thumbnail
     func updateDrawing(_ drawing: PKDrawing, at index: Int) {
         dataModel.drawings[index] = drawing
         generateThumbnail(index)
         saveDataModel()
     }
     
-    /// Helper method to cause regeneration of all thumbnails.
+    // regeneration all thumbnails
     private func generateAllThumbnails() {
         for index in drawings.indices {
             generateThumbnail(index)
         }
     }
     
-    /// Helper method to cause regeneration of a specific thumbnail, using the current user interface style
-    /// of the thumbnail view controller.
+    // regeneration a specific thumbnail
     private func generateThumbnail(_ index: Int) {
         let drawing = drawings[index]
         let aspectRatio = DataModelController.thumbnailSize.width / DataModelController.thumbnailSize.height
@@ -92,27 +83,27 @@ class DataModelController {
         }
     }
     
-    /// Helper method to replace a thumbnail at a given index.
+    // replace a thumbnail
     private func updateThumbnail(_ image: UIImage, at index: Int) {
         thumbnails[index] = image
         didChange()
     }
     
-    /// Helper method to notify observer that the data model changed.
+    // notify observer that the data model changed.
     private func didChange() {
         for observer in self.observers {
             observer.dataModelChanged()
         }
     }
     
-    /// The URL of the file in which the current data model is saved.
+    // where the current data model will be saved
     private var saveURL: URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths.first!
         return documentsDirectory.appendingPathComponent("PencilKitDraw.data")
     }
     
-    /// Save the data model to persistent storage.
+    // Save data model
     func saveDataModel() {
         let savingDataModel = dataModel
         let url = saveURL
@@ -127,7 +118,7 @@ class DataModelController {
         }
     }
     
-    /// Load the data model from persistent storage
+    // Load data model from persistent storage
     private func loadDataModel() {
         let url = saveURL
         serializationQueue.async {
@@ -153,7 +144,7 @@ class DataModelController {
         }
     }
     
-    /// Construct an initial data model when no data model already exists.
+    // Construct initial data model when no data model already exists
     private func loadDefaultDrawings() -> DataModel {
         var testDataModel = DataModel()
         for sampleDataName in DataModel.defaultDrawingNames {
@@ -165,14 +156,14 @@ class DataModelController {
         return testDataModel
     }
     
-    /// Helper method to set the current data model to a data model created on a background queue.
+    // set the current data model to a data model created on a background queue
     private func setLoadedDataModel(_ dataModel: DataModel) {
         self.dataModel = dataModel
         thumbnails = Array(repeating: UIImage(), count: dataModel.drawings.count)
         generateAllThumbnails()
     }
     
-    /// Create a new drawing in the data model.
+    // Create a new drawing in the data model.
     func newDrawing() {
         let newDrawing = PKDrawing()
         dataModel.drawings.append(newDrawing)

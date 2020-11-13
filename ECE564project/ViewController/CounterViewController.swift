@@ -19,7 +19,10 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     var passanimation: CABasicAnimation!
     var isAniationStarted = false
     var isViewChange = false
+    var isFromBackGround = false
+    var totalTime = 60
     
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var timeLabel: UILabel!
     
@@ -38,10 +41,24 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         isViewChange = false
         timeLabel.text = ""
+        messageLabel.isHidden = true
+        pickerView.isHidden = true
         setCirclePath()
         createBackProgressLayer()
+        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
     }
     
+    // pause when app move to back ground(when user tap the home button)
+    @objc func appMovedToBackground() {
+        print("App moved to background!")
+        isFromBackGround = true
+        doPause()
+        pauseAnimation()
+    }
+    
+    // decide when start new timer, when continue old one
     override func viewDidAppear(_ animated: Bool) {
         self.foreProgressLayer = passforeProgressLayer
         self.animation = passanimation
@@ -51,6 +68,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             timeLabel.text = formatTime(time: 0)
             startButton.setTitle("Start", for: .normal)
             startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
+            pickerView.isHidden = false
         }
         // continue with last timer and animation
         else{
@@ -58,10 +76,14 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
             timeLabel.text = formatTime(time: time)
             doPause() // pause previous timer and animation
             pickerView.isHidden = true
+            messageLabel.isHidden = false
+            isFromBackGround = false
         }
     }
     
     // MARK: - set up timer
+    
+    // when start/pause Button is tapped
     @IBAction func controlTimer(_ sender: Any) {
         if(timerMode == .initial){
             if(time != 0){ // start new timer and progress animation
@@ -74,6 +96,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
     
+    // start timer and animation
     func doStart(){
         startResumeAnimation()
         startTimer()
@@ -81,8 +104,10 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         startButton.setTitle("Pause", for: .normal)
         startButton.setTitleColor(UIColor.orange, for: .normal)
         pickerView.isHidden = true
+        messageLabel.isHidden = false
     }
     
+     // pause timer and animation
     func doPause(){
         pauseAnimation()
         timer.invalidate()
@@ -91,6 +116,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
     }
     
+    // stop timer
     func doStop(){
         timer.invalidate()
         timerMode = .initial
@@ -99,6 +125,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         startButton.setTitle("Start", for: .normal)
         startButton.setTitleColor(UIColor.outlineStrokeColor, for: .normal)
         pickerView.isHidden = false
+         messageLabel.isHidden = true
     }
     
     // cancel current timer and progress animation
@@ -107,13 +134,16 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         doStop()
     }
     
+    // start timer, begin to count down
     func startTimer(){
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: (#selector(updateTimer)), userInfo: nil, repeats: true)
     }
     
+    // timer count down every seconds
     @objc func updateTimer(){
         if(time <= 0){
             doStop()
+            stopAnimation()
         }
         else{
             time -= 1
@@ -121,6 +151,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
     
+    // display time format
     func formatTime(time: Int)->String{
         let minutes = Int(time) / 60 % 60
         let seconds = Int(time) % 60
@@ -129,6 +160,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     // MARK: - set progress animation
     
+    // draw the circle
     func setCirclePath(){
         circlePath = UIBezierPath(arcCenter: .zero, radius: 100, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
     }
@@ -156,6 +188,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         view.layer.addSublayer(foreProgressLayer)
     }
     
+    // whether start or resume animation
     func startResumeAnimation(){
         if(!isAniationStarted){
             startAnimation()
@@ -165,6 +198,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         }
     }
     
+    // start animation
     func startAnimation() {
         resetAnimation()
         foreProgressLayer.strokeEnd = 0.0
@@ -180,12 +214,14 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         isAniationStarted = true
     }
     
+    // pause animation
     func pauseAnimation(){
         let pausedTime = foreProgressLayer.convertTime(CACurrentMediaTime(), from: nil)
         foreProgressLayer.speed = 0.0
         foreProgressLayer.timeOffset = pausedTime
     }
     
+    // resume an animation
     func resumeAnimation(){
         let pausedTime = foreProgressLayer.convertTime(CACurrentMediaTime(), from: nil)
         foreProgressLayer.speed = 1.0
@@ -195,6 +231,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         foreProgressLayer.beginTime = timeSincePaused
     }
     
+    // reset an animation
     func resetAnimation() {
         foreProgressLayer.speed = 1.0
         foreProgressLayer.timeOffset = 0.0
@@ -203,25 +240,28 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
         isAniationStarted = false
     }
     
+    // stop an animation
     func stopAnimation(){
         resetAnimation()
         foreProgressLayer.removeAllAnimations()
     }
     
+    // when animation is called to stop
     internal func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        if(!isViewChange){
+        // if the stop is not cause by view change or app move to back ground
+        // means that timer's time is up, need to stop
+        if(!isViewChange && !isFromBackGround){
             doStop()
             stopAnimation()
         }
     }
-
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
+    // pass the current timer and animation to next view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
         isViewChange = true
         pauseAnimation()
         timer.invalidate()
@@ -229,6 +269,7 @@ class CounterViewController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
 
      // MARK: - set up pickerView
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

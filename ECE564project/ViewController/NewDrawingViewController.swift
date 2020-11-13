@@ -51,37 +51,26 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         
     }
 
+    // save image to album
     @IBAction func saveImageToAlbum(_ sender: Any) {
         UIGraphicsBeginImageContextWithOptions(canvasView.bounds.size, false, UIScreen.main.scale)
         canvasView.drawHierarchy(in: canvasView.bounds, afterScreenUpdates: true)
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         if image != nil {
-//            PHPhotoLibrary.shared().performChanges(
-//                {PHAssetChangeRequest.creationRequestForAsset(from: image!)},
-//                completionHandler: {success, error in })
             let activityController = UIActivityViewController(activityItems: [image!], applicationActivities: nil)
-//            activityController.completionWithItemsHandler = { (nil, completed, _, error) in
-//                if completed{
-//                    print("completed")
-//                }
-//                else{
-//                    print("cancled")
-//                }
-//            }
             present(activityController, animated: true)
-//            {
-//                print("presented")
-//            }
         }
     }
     
+    // change edit or read mode
     @IBAction func changePencilFinger(_ sender: Any) {
         canvasView.allowsFingerDrawing.toggle()
         pencilButton.title = canvasView.allowsFingerDrawing ? "toFinger" : "toPencil"
     }
     
-    // - MARK: make view rotation work
+    // MARK: make view rotation work
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let canvasScale = canvasView.bounds.width / self.canvasWidth
@@ -113,19 +102,6 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
         }
         canvasView.contentSize = CGSize(width: DataModel.canvasWidth * canvasView.zoomScale, height: contentHeight)
     }
-
-    
-//    func updateContentSize(){
-//        let drawing = canvasView.drawing
-//        let contentHeight: CGFloat
-//        if !drawing.bounds.isNull{
-//            contentHeight = max(canvasView.bounds.height, (drawing.bounds.maxY + self.canvasHeight) * canvasView.zoomScale)
-//            }
-//        else{
-//            contentHeight = canvasView.bounds.height
-//        }
-//        canvasView.contentSize = CGSize(width: self.canvasWidth * canvasView.zoomScale, height: contentHeight)
-//    }
     
     // When the view is removed, save the modified drawing
     override func viewWillDisappear(_ animated: Bool) {
@@ -153,15 +129,9 @@ class NewDrawingViewController: UIViewController, PKCanvasViewDelegate, PKToolPi
     func updateLayout(for toolPicker: PKToolPicker) {
         let obscuredFrame = toolPicker.frameObscured(in: view)
         
-        // If the tool picker is floating over the canvas, it also contains
-        // undo and redo buttons.
         if obscuredFrame.isNull {
             canvasView.contentInset = .zero
         }
-        
-        // Otherwise, the bottom of the canvas should be inset to the top of the
-        // tool picker, and the tool picker no longer displays its own undo and
-        // redo buttons.
         else {
             canvasView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.maxY - obscuredFrame.minY, right: 0)
         }

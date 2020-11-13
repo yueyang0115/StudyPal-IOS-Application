@@ -468,9 +468,12 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HeY-wB-FUD">
-                                <rect key="frame" x="66" y="510" width="224" height="119"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HeY-wB-FUD">
+                                <rect key="frame" x="76" y="510" width="224" height="119"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="119" id="VXj-eh-sn7"/>
+                                    <constraint firstAttribute="width" constant="224" id="m7D-ik-YOu"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="dataSource" destination="Rla-72-KTH" id="7eQ-7P-mdu"/>
                                     <outlet property="delegate" destination="Rla-72-KTH" id="7bS-sg-hlV"/>
@@ -482,20 +485,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8I-S4-OVs">
-                                <rect key="frame" x="248" y="473" width="89" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancel:" destination="Rla-72-KTH" eventType="touchUpInside" id="KtG-2O-bT0"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-8E-CMm">
-                                <rect key="frame" x="40" y="473" width="100" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RhE-8E-CMm">
+                                <rect key="frame" x="50" y="466" width="61" height="41"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
                                 <state key="normal" title="Start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -504,11 +495,45 @@
                                     <action selector="controlTimer:" destination="Rla-72-KTH" eventType="touchUpInside" id="pBS-3q-51c"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R8I-S4-OVs">
+                                <rect key="frame" x="251" y="464" width="85" height="41"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="25"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="Rla-72-KTH" eventType="touchUpInside" id="KtG-2O-bT0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't look at your phone!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpy-1R-WO5">
+                                <rect key="frame" x="40.5" y="549" width="294.5" height="34"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Make a timer now!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WZ3-kw-ykP">
+                                <rect key="frame" x="78" y="70" width="219.5" height="34"/>
+                                <fontDescription key="fontDescription" name="BradleyHandITCTT-Bold" family="Bradley Hand" pointSize="27"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="rLy-M4-7KP" firstAttribute="bottom" secondItem="fpy-1R-WO5" secondAttribute="bottom" constant="84" id="22z-Wn-f1Q"/>
+                            <constraint firstItem="WZ3-kw-ykP" firstAttribute="top" secondItem="rLy-M4-7KP" secondAttribute="top" constant="26" id="8WA-JN-dAd"/>
+                            <constraint firstItem="WZ3-kw-ykP" firstAttribute="centerX" secondItem="Kyd-j7-KDh" secondAttribute="centerX" id="A7L-wq-ueG"/>
+                            <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="RhE-8E-CMm" secondAttribute="trailing" constant="248" id="ADg-2h-yxL"/>
+                            <constraint firstItem="rLy-M4-7KP" firstAttribute="trailing" secondItem="R8I-S4-OVs" secondAttribute="trailing" constant="39" id="E5w-0Z-wyt"/>
+                            <constraint firstItem="rLy-M4-7KP" firstAttribute="bottom" secondItem="HeY-wB-FUD" secondAttribute="bottom" constant="38" id="WmP-6c-OcL"/>
                             <constraint firstItem="JTn-fZ-r1f" firstAttribute="top" secondItem="rLy-M4-7KP" secondAttribute="top" constant="93" id="aPs-Oh-49Z"/>
+                            <constraint firstItem="RhE-8E-CMm" firstAttribute="leading" secondItem="rLy-M4-7KP" secondAttribute="leading" constant="50" id="bCG-m7-50W"/>
+                            <constraint firstItem="HeY-wB-FUD" firstAttribute="centerX" secondItem="Kyd-j7-KDh" secondAttribute="centerX" id="kzz-ep-tg0"/>
+                            <constraint firstItem="HeY-wB-FUD" firstAttribute="top" secondItem="R8I-S4-OVs" secondAttribute="bottom" constant="5" id="lhX-bE-Cwq"/>
+                            <constraint firstItem="fpy-1R-WO5" firstAttribute="centerX" secondItem="Kyd-j7-KDh" secondAttribute="centerX" id="nab-ER-WW8"/>
                             <constraint firstItem="JTn-fZ-r1f" firstAttribute="centerX" secondItem="Kyd-j7-KDh" secondAttribute="centerX" id="oK4-OM-bdZ"/>
+                            <constraint firstItem="HeY-wB-FUD" firstAttribute="top" secondItem="RhE-8E-CMm" secondAttribute="bottom" constant="3" id="ptU-OY-JfV"/>
+                            <constraint firstItem="R8I-S4-OVs" firstAttribute="leading" secondItem="Kyd-j7-KDh" secondAttribute="leadingMargin" constant="235" id="zN3-vh-R27"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rLy-M4-7KP"/>
                     </view>
@@ -521,6 +546,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="R8I-S4-OVs" id="cyY-x3-ZQU"/>
+                        <outlet property="messageLabel" destination="fpy-1R-WO5" id="m3D-fY-eZP"/>
                         <outlet property="pickerView" destination="HeY-wB-FUD" id="xIu-9R-aSi"/>
                         <outlet property="startButton" destination="RhE-8E-CMm" id="kWW-Fj-UYK"/>
                         <outlet property="timeLabel" destination="JTn-fZ-r1f" id="6Bw-LS-tPU"/>

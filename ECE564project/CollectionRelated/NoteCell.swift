@@ -12,6 +12,7 @@ class NoteCell: UICollectionViewCell {
     
     @IBOutlet weak var noteImage: UIImageView!
     
+    // set a note's preview in collection view
     override func awakeFromNib() {
         super.awakeFromNib()
         noteImage.layer.shadowPath = UIBezierPath(rect: noteImage.bounds).cgPath

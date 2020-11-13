@@ -17,14 +17,6 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        /*self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)*/
-
-        // Do any additional setup after loading the view.
         
         // Inform the data model of the current thumbnail traits.
         dataModelController.thumbnailTraitCollection = traitCollection
@@ -33,39 +25,34 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
         dataModelController.observers.append(self)
     }
     
-    /// Inform the data model of the current thumbnail traits.
+    // Inform the data model of the current thumbnail traits
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         dataModelController.thumbnailTraitCollection = traitCollection
     }
     
-    // MARK: Data Model Observer
-    
     func dataModelChanged() {
         collectionView.reloadData()
     }
     
-    // MARK: Actions
-    
-    /// Action method: Create a new drawing.
+    // Create a new drawing.
     @IBAction func newDrawing(_ sender: Any) {
         dataModelController.newDrawing()
     }
 
-
     // MARK: Collection View Data Source
     
-    /// Data source method: Number of sections.
+    // Number of sections
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    /// Data source method: Number of items in each section.
+    // Number of items in each section
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataModelController.drawings.count
     }
     
-    /// Data source method: The view for each cell.
+    // The view for each cell
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Get a cell view with the correct identifier.
@@ -84,45 +71,11 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
         return cell
     }
     
-    // MARK: Collection View Delegate
-    
-    /// Delegate method: Display the drawing for a cell that was tapped.
+    // display the drawing for a cell that was tapped
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         drawingIndex = indexPath.last!
         performSegue(withIdentifier: "showNoteSegue", sender: self)
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
-    
     
     // MARK: - Navigation
 
@@ -135,7 +88,6 @@ class AllNotesCollectionViewController: UICollectionViewController, DataModelCon
             dst.drawingIndex = self.drawingIndex
         }
     }
-    
     
     @IBAction func returnFromNote(segue: UIStoryboardSegue){
         
