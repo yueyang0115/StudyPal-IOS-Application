@@ -1,3 +1,5 @@
+## Presentation Video ##
+The presentation video link is : https://www.dropbox.com/s/iptpitwqkvpd38j/StudyPal.mov?dl=0
 ## Key Features ##  
 #### Taking Notes ####
 1. Create a new note
